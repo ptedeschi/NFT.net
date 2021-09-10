@@ -1,15 +1,23 @@
-using System;
-using System.Windows.Forms;
+// <copyright file="Program.cs" company="Tedeschi">
+// Copyright (c) Tedeschi. All rights reserved.
+// </copyright>
 
-namespace Tedeschi.NFT.net
+namespace Tedeschi.NFT
 {
-    static class Program
+    using System;
+    using System.Windows.Forms;
+    using Tedeschi.NFT.View;
+
+    /// <summary>
+    /// Program entry point.
+    /// </summary>
+    public static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
