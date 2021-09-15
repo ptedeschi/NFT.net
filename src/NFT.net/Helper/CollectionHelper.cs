@@ -13,7 +13,7 @@ namespace Tedeschi.NFT.Helper
 
     public class CollectionHelper
     {
-        public static void Create(string layersFolder, string outputFolder, int metadataType, string metadataProjectName, string metadataImageBaseUri, int collectionSize, int collectionInitialNumber, string collectionFilenamePrefix)
+        public static void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, int collectionSize, int collectionInitialNumber, string collectionImagePrefix)
         {
             var layers = LayerHelper.Load(layersFolder);
 
@@ -27,10 +27,10 @@ namespace Tedeschi.NFT.Helper
                 var filename = $"{collectionNumber}{Constants.FileExtension.Png}";
                 var filenameWithoutExtension = $"{collectionNumber}";
 
-                if (!string.IsNullOrWhiteSpace(collectionFilenamePrefix))
+                if (!string.IsNullOrWhiteSpace(collectionImagePrefix))
                 {
-                    filename = $"{collectionFilenamePrefix}{collectionNumber}{Constants.FileExtension.Png}";
-                    filenameWithoutExtension = $"{collectionFilenamePrefix}{collectionNumber}";
+                    filename = $"{collectionImagePrefix}{collectionNumber}{Constants.FileExtension.Png}";
+                    filenameWithoutExtension = $"{collectionImagePrefix}{collectionNumber}";
                 }
 
                 var metadata = new Metadata
@@ -38,7 +38,7 @@ namespace Tedeschi.NFT.Helper
                     Id = collectionNumber,
                     Dna = item.Dna,
                     Name = filenameWithoutExtension,
-                    Description = metadataProjectName,
+                    Description = metadataDescription,
                     Image = $"{metadataImageBaseUri}/{System.Uri.EscapeDataString(filename)}",
                     Attributes = item.Attributes.Select(i => new Attribute { Layer = i.Layer, Value = i.Value }).ToList(),
                 };

@@ -12,8 +12,6 @@ namespace Tedeschi.NFT.Helper
 
     public class GeneratorHelper
     {
-        private static readonly Random Random = new Random();
-
         public static List<ImageDescriptor> Create(List<Layer> layers, int collectionSize)
         {
             var images = new List<ImageDescriptor>();
@@ -60,7 +58,7 @@ namespace Tedeschi.NFT.Helper
 
             foreach (var layer in layers)
             {
-                var index = Random.Next(0, layer.Elements.Count);
+                var index = layer.Randomizer.NextWithReplacement();
 
                 var attribute = new ImageAttribute
                 {

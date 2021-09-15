@@ -9,6 +9,7 @@ namespace Tedeschi.NFT.Helper
     using Tedeschi.NFT.Exception;
     using Tedeschi.NFT.Model;
     using Tedeschi.NFT.Util;
+    using Weighted_Randomizer;
 
     public class LayerHelper
     {
@@ -19,6 +20,7 @@ namespace Tedeschi.NFT.Helper
 
             for (var i = 0; i < folders.Length; i++)
             {
+                var randomizer = new DynamicWeightedRandomizer<int>();
                 var folder = folders[i];
                 var folderName = Path.GetFileName(folder);
 
@@ -36,6 +38,17 @@ namespace Tedeschi.NFT.Helper
                 {
                     var file = files[j];
                     var filename = Path.GetFileNameWithoutExtension(file);
+
+                    // If the filename has Weight information, extract it.
+                    // Otherwise use Weight as the number of files present to represent 100%.
+                    var weight = files.Length;
+
+                    if (StringUtil.HasWeight(filename, Constants.WeightDelimiter))
+                    {
+                        weight = StringUtil.GetWeight(filename, Constants.WeightDelimiter);
+                        filename = StringUtil.GetNameWithoutWeight(filename, Constants.WeightDelimiter);
+                    }
+
                     var convertedCaseFilename = StringUtil.ToTitleCase(filename);
 
                     var element = new Element
@@ -43,7 +56,10 @@ namespace Tedeschi.NFT.Helper
                         Id = j,
                         Name = convertedCaseFilename,
                         Path = file,
+                        Weight = weight,
                     };
+
+                    randomizer.Add(element.Id, element.Weight);
 
                     elements.Add(element);
                 }
@@ -62,6 +78,7 @@ namespace Tedeschi.NFT.Helper
                     Id = i,
                     Name = convertedCaseFolderName,
                     Elements = elements,
+                    Randomizer = randomizer,
                 };
 
                 layers.Add(layer);

@@ -18,17 +18,19 @@ namespace Tedeschi.NFT.View
         {
             this.InitializeComponent();
             this.DefaultValues();
+
+            this.Text = $"{Application.ProductName} v{Application.ProductVersion}";
         }
 
         private void DefaultValues()
         {
             this.comboBoxMetadataType.SelectedIndex = Constants.MetadataDefault.DefaultType;
-            this.textBoxMetadataProjectName.Text = Constants.MetadataDefault.DefaultProjectName;
+            this.textBoxMetadataDescription.Text = Constants.MetadataDefault.DefaultProjectName;
             this.textBoxMetadataImageBaseURI.Text = Constants.MetadataDefault.DefaultImageBaseUri;
 
             this.textBoxCollectionSize.Text = Constants.CollectionDefault.DefaultSize;
             this.textBoxCollectionInitialNumber.Text = Constants.CollectionDefault.DefaultInitialNumber;
-            this.textBoxCollectionFilenamePrefix.Text = Constants.CollectionDefault.DefaultFilenamePrefix;
+            this.textBoxCollectionImagePrefix.Text = Constants.CollectionDefault.DefaultFilenamePrefix;
         }
 
         private void AboutMenuItemOnClick(object sender, System.EventArgs e)
@@ -62,12 +64,12 @@ namespace Tedeschi.NFT.View
             var outputFolder = this.textBoxOutputFolder.Text;
 
             var metadataType = this.comboBoxMetadataType.SelectedIndex;
-            var metadataProjectName = this.textBoxMetadataProjectName.Text;
+            var metadataDescription = this.textBoxMetadataDescription.Text;
             var metadataImageBaseUri = this.textBoxMetadataImageBaseURI.Text;
 
             var collectionSize = this.textBoxCollectionSize.Text;
             var collectionInitialNumber = this.textBoxCollectionInitialNumber.Text;
-            var collectionFilenamePrefix = this.textBoxCollectionFilenamePrefix.Text;
+            var collectionImagePrefix = this.textBoxCollectionImagePrefix.Text;
 
             var bgw = new BackgroundWorker();
             bgw.DoWork += (_, __) =>
@@ -75,7 +77,7 @@ namespace Tedeschi.NFT.View
                 try
                 {
                     this.ValidateInput(layersFolder, outputFolder, metadataImageBaseUri, collectionSize, collectionInitialNumber);
-                    CollectionHelper.Create(layersFolder, outputFolder, metadataType, metadataProjectName, metadataImageBaseUri, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionFilenamePrefix);
+                    CollectionHelper.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionImagePrefix);
 
                     MessageBox.Show(Resource.COLLECTION_CREATED_SUCCESSFULLY);
                 }

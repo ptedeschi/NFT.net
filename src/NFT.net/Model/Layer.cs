@@ -5,6 +5,7 @@
 namespace Tedeschi.NFT.Model
 {
     using System.Collections.Generic;
+    using Weighted_Randomizer;
 
     public class Layer
     {
@@ -13,5 +14,7 @@ namespace Tedeschi.NFT.Model
         public string Name { get; set; }
 
         public List<Element> Elements { get; set; }
+
+        public IWeightedRandomizer<int> Randomizer { get; set; }
     }
 }

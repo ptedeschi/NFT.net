@@ -39,7 +39,7 @@ namespace Tedeschi.NFT.View
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBoxCollectionSize = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBoxCollectionFilenamePrefix = new System.Windows.Forms.TextBox();
+            this.textBoxCollectionImagePrefix = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxCollectionInitialNumber = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@ namespace Tedeschi.NFT.View
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxMetadataImageBaseURI = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxMetadataProjectName = new System.Windows.Forms.TextBox();
+            this.textBoxMetadataDescription = new System.Windows.Forms.TextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
@@ -116,7 +116,7 @@ namespace Tedeschi.NFT.View
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBoxCollectionFilenamePrefix);
+            this.groupBox2.Controls.Add(this.textBoxCollectionImagePrefix);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.textBoxCollectionInitialNumber);
             this.groupBox2.Controls.Add(this.label2);
@@ -131,10 +131,10 @@ namespace Tedeschi.NFT.View
             // 
             // textBoxCollectionFilenamePrefix
             // 
-            this.textBoxCollectionFilenamePrefix.Location = new System.Drawing.Point(118, 86);
-            this.textBoxCollectionFilenamePrefix.Name = "textBoxCollectionFilenamePrefix";
-            this.textBoxCollectionFilenamePrefix.Size = new System.Drawing.Size(121, 23);
-            this.textBoxCollectionFilenamePrefix.TabIndex = 12;
+            this.textBoxCollectionImagePrefix.Location = new System.Drawing.Point(118, 86);
+            this.textBoxCollectionImagePrefix.Name = "textBoxCollectionFilenamePrefix";
+            this.textBoxCollectionImagePrefix.Size = new System.Drawing.Size(121, 23);
+            this.textBoxCollectionImagePrefix.TabIndex = 12;
             // 
             // label3
             // 
@@ -216,7 +216,7 @@ namespace Tedeschi.NFT.View
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.textBoxMetadataImageBaseURI);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.textBoxMetadataProjectName);
+            this.groupBox3.Controls.Add(this.textBoxMetadataDescription);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.comboBoxMetadataType);
             this.groupBox3.Location = new System.Drawing.Point(12, 190);
@@ -253,10 +253,10 @@ namespace Tedeschi.NFT.View
             // 
             // textBoxMetadataProjectName
             // 
-            this.textBoxMetadataProjectName.Location = new System.Drawing.Point(142, 49);
-            this.textBoxMetadataProjectName.Name = "textBoxMetadataProjectName";
-            this.textBoxMetadataProjectName.Size = new System.Drawing.Size(317, 23);
-            this.textBoxMetadataProjectName.TabIndex = 7;
+            this.textBoxMetadataDescription.Location = new System.Drawing.Point(142, 49);
+            this.textBoxMetadataDescription.Name = "textBoxMetadataProjectName";
+            this.textBoxMetadataDescription.Size = new System.Drawing.Size(317, 23);
+            this.textBoxMetadataDescription.TabIndex = 7;
             // 
             // statusStrip
             // 
@@ -343,7 +343,7 @@ namespace Tedeschi.NFT.View
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxCollectionSize;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBoxCollectionFilenamePrefix;
+        private System.Windows.Forms.TextBox textBoxCollectionImagePrefix;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxCollectionInitialNumber;
         private System.Windows.Forms.Label label2;
@@ -356,7 +356,7 @@ namespace Tedeschi.NFT.View
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxMetadataImageBaseURI;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxMetadataProjectName;
+        private System.Windows.Forms.TextBox textBoxMetadataDescription;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatus;
         private System.Windows.Forms.MenuStrip menuStrip;

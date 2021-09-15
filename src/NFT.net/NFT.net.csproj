@@ -3,11 +3,11 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-	<RunTimeIdentifiers>win10-x64;osx.10.12-x64</RunTimeIdentifiers>
+	<RunTimeIdentifiers>win10-x64</RunTimeIdentifiers>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>Tedeschi.NFT</RootNamespace>
     <AssemblyName>NFT.net</AssemblyName>
-    <Version>0.0.9</Version>
+    <Version>1.0.0</Version>
     <Authors>Tedeschi</Authors>
   </PropertyGroup>
 
@@ -18,6 +18,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
 	  <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Weighted Randomizer Net Standard">
+      <HintPath>..\..\dependencies\Weighted Randomizer\Weighted Randomizer Net Standard.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

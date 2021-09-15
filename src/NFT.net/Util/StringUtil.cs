@@ -21,5 +21,45 @@ namespace Tedeschi.NFT.Util
 
             return file.Substring(index + 1);
         }
+
+        public static bool HasWeight(string filename, char delimiter)
+        {
+            try
+            {
+                var index = filename.LastIndexOf(delimiter);
+                var weight = filename.Substring(index + 1);
+
+                int.Parse(weight);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static string GetNameWithoutWeight(string filename, char delimiter)
+        {
+            try
+            {
+                var index = filename.LastIndexOf(delimiter);
+                var nameWithoutWeight = filename.Substring(0, index);
+
+                return nameWithoutWeight;
+            }
+            catch
+            {
+                return filename;
+            }
+        }
+
+        public static int GetWeight(string filename, char delimiter)
+        {
+            var index = filename.LastIndexOf(delimiter);
+            var weight = filename.Substring(index + 1);
+
+            return int.Parse(weight);
+        }
     }
 }

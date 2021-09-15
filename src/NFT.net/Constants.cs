@@ -7,6 +7,7 @@ namespace Tedeschi.NFT
     public static class Constants
     {
         public const char LayerNamingDelimiter = '-';
+        public const char WeightDelimiter = '+';
         public const int MaxDuplicateDnaRetries = 100;
 
         public static class About
