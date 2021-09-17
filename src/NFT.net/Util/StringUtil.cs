@@ -19,7 +19,12 @@ namespace Tedeschi.NFT.Util
         {
             var index = file.IndexOf(delimiter);
 
-            return file.Substring(index + 1);
+            if (index > 0)
+            {
+                return file.Substring(index + 1);
+            }
+
+            return file;
         }
 
         public static bool HasWeight(string filename, char delimiter)
@@ -27,11 +32,17 @@ namespace Tedeschi.NFT.Util
             try
             {
                 var index = filename.LastIndexOf(delimiter);
-                var weight = filename.Substring(index + 1);
 
-                int.Parse(weight);
+                if (index > 0)
+                {
+                    var weight = filename.Substring(index + 1);
 
-                return true;
+                    int.Parse(weight);
+
+                    return true;
+                }
+
+                return false;
             }
             catch
             {
@@ -44,9 +55,15 @@ namespace Tedeschi.NFT.Util
             try
             {
                 var index = filename.LastIndexOf(delimiter);
-                var nameWithoutWeight = filename.Substring(0, index);
 
-                return nameWithoutWeight;
+                if (index > 0)
+                {
+                    var nameWithoutWeight = filename.Substring(0, index);
+
+                    return nameWithoutWeight; 
+                }
+
+                return filename;
             }
             catch
             {
