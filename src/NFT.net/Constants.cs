@@ -8,6 +8,7 @@ namespace Tedeschi.NFT
     {
         public const char LayerNamingDelimiter = '-';
         public const char WeightDelimiter = '+';
+        public const string ImagesFolderName = "images";
         public const int MaxDuplicateDnaRetries = 100;
 
         public static class About

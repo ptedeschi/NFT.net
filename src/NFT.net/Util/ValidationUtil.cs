@@ -16,7 +16,7 @@ namespace Tedeschi.NFT.Util
         public static bool IsUri(string text)
         {
             return Uri.TryCreate(text, UriKind.Absolute, out var uriResult)
-                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps || uriResult.Scheme == "ipfs");
         }
 
         public static bool IsValidLayerName(string layerName)

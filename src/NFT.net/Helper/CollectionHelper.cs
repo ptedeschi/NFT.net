@@ -21,6 +21,13 @@ namespace Tedeschi.NFT.Helper
             var collectionNumber = collectionInitialNumber;
             var metadataList = new List<Metadata>();
 
+            var imagesFoder = $"{outputFolder}\\{Constants.ImagesFolderName}";
+
+            if (!Directory.Exists(imagesFoder))
+            {
+                Directory.CreateDirectory(imagesFoder);
+            }
+
             foreach (var item in imageDescriptors)
             {
                 var combinedImages = ImageHelper.Combine(item.Files.ToArray());
@@ -45,7 +52,7 @@ namespace Tedeschi.NFT.Helper
 
                 metadataList.Add(metadata);
 
-                combinedImages.Save($"{outputFolder}\\{filename}", ImageFormat.Png);
+                combinedImages.Save($"{imagesFoder}\\{filename}", ImageFormat.Png);
 
                 collectionNumber++;
             }

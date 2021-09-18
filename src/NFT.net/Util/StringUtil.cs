@@ -60,7 +60,7 @@ namespace Tedeschi.NFT.Util
                 {
                     var nameWithoutWeight = filename.Substring(0, index);
 
-                    return nameWithoutWeight; 
+                    return nameWithoutWeight;
                 }
 
                 return filename;
