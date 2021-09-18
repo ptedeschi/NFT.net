@@ -1,17 +1,17 @@
-﻿// <copyright file="MetadataHelper.cs" company="Tedeschi">
+﻿// <copyright file="MetadataService.cs" company="Tedeschi">
 // Copyright (c) Tedeschi. All rights reserved.
 // </copyright>
 
-namespace Tedeschi.NFT.Helper
+namespace Tedeschi.NFT.Services.Metadata
 {
     using System.Collections.Generic;
     using System.IO;
     using Newtonsoft.Json;
     using Tedeschi.NFT.Model;
 
-    public class MetadataHelper
+    internal class MetadataService : IMetadataService
     {
-        public static void GenerateMetadata(string outputFolder, List<Metadata> metadataList, int type)
+        public void Generate(string outputFolder, List<Metadata> metadataList, int type)
         {
             var metadataLocation = $"{outputFolder}\\{Constants.MetadataDefault.FolderName}";
             var serializerSettings = new JsonSerializerSettings
@@ -50,7 +50,7 @@ namespace Tedeschi.NFT.Helper
             }
         }
 
-        public static void UpdateImageBaseURI(string outputFolder, string newImageBaseUri, int type)
+        public void Update(string outputFolder, string newImageBaseUri, int type)
         {
             var metadataLocation = $"{outputFolder}\\{Constants.MetadataDefault.FolderName}";
 
@@ -69,7 +69,7 @@ namespace Tedeschi.NFT.Helper
                             item.Image = $"{newImageBaseUri}/{item.Filename}";
                         }
 
-                        GenerateMetadata(outputFolder, list, type);
+                        this.Generate(outputFolder, list, type);
                     }
 
                     break;
@@ -86,7 +86,7 @@ namespace Tedeschi.NFT.Helper
                             list.Add(metadata);
                         }
 
-                        GenerateMetadata(outputFolder, list, type);
+                        this.Generate(outputFolder, list, type);
                     }
 
                     break;

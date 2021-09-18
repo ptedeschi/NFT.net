@@ -1,17 +1,17 @@
-﻿// <copyright file="ImageHelper.cs" company="Tedeschi">
+﻿// <copyright file="ImageService.cs" company="Tedeschi">
 // Copyright (c) Tedeschi. All rights reserved.
 // </copyright>
 
-namespace Tedeschi.NFT.Helper
+namespace Tedeschi.NFT.Services.Image
 {
     using System;
     using System.Collections.Generic;
     using System.Drawing;
     using Tedeschi.NFT.Exception;
 
-    public class ImageHelper
+    internal class ImageService : IImageService
     {
-        public static Bitmap Combine(string[] files)
+        public Bitmap Combine(string[] files)
         {
             var images = new List<Bitmap>();
             Bitmap baseImage = null;
@@ -45,7 +45,7 @@ namespace Tedeschi.NFT.Helper
                 using var graphics = Graphics.FromImage(baseImage);
                 foreach (var image in images)
                 {
-                    // Draw the image with no shrinking or stretching.
+                    // Draw the image with no shrinking or stretching
                     graphics.DrawImage(
                         image,
                         new Rectangle(0, 0, width, height),

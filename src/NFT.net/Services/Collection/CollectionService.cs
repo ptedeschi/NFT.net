@@ -1,22 +1,39 @@
-﻿// <copyright file="CollectionHelper.cs" company="Tedeschi">
+﻿// <copyright file="CollectionService.cs" company="Tedeschi">
 // Copyright (c) Tedeschi. All rights reserved.
 // </copyright>
 
-namespace Tedeschi.NFT.Helper
+namespace Tedeschi.NFT.Services.Collection
 {
     using System.Collections.Generic;
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
     using Tedeschi.NFT.Model;
+    using Tedeschi.NFT.Services.Generator;
+    using Tedeschi.NFT.Services.Image;
+    using Tedeschi.NFT.Services.Layer;
+    using Tedeschi.NFT.Services.Metadata;
 
-    public class CollectionHelper
+    internal class CollectionService : ICollectionService
     {
-        public static void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, int collectionSize, int collectionInitialNumber, string collectionImagePrefix)
-        {
-            var layers = LayerHelper.Load(layersFolder);
+        private readonly ILayerService layerService;
+        private readonly IGeneratorService generatorService;
+        private readonly IImageService imageService;
+        private readonly IMetadataService metadataService;
 
-            var imageDescriptors = GeneratorHelper.Create(layers, collectionSize);
+        public CollectionService(ILayerService layerService, IGeneratorService generatorService, IImageService imageService, IMetadataService metadataService)
+        {
+            this.layerService = layerService;
+            this.generatorService = generatorService;
+            this.imageService = imageService;
+            this.metadataService = metadataService;
+        }
+
+        public void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, int collectionSize, int collectionInitialNumber, string collectionImagePrefix)
+        {
+            var layers = this.layerService.Load(layersFolder);
+
+            var imageDescriptors = this.generatorService.Create(layers, collectionSize);
             var collectionNumber = collectionInitialNumber;
             var metadataList = new List<Metadata>();
 
@@ -29,7 +46,7 @@ namespace Tedeschi.NFT.Helper
 
             foreach (var item in imageDescriptors)
             {
-                var combinedImages = ImageHelper.Combine(item.Files.ToArray());
+                var combinedImages = this.imageService.Combine(item.Files.ToArray());
                 var filename = $"{collectionNumber}{Constants.FileExtension.Png}";
                 var filenameWithoutExtension = $"{collectionNumber}";
 
@@ -60,7 +77,7 @@ namespace Tedeschi.NFT.Helper
                 collectionNumber++;
             }
 
-            MetadataHelper.GenerateMetadata(outputFolder, metadataList, metadataType);
+            this.metadataService.Generate(outputFolder, metadataList, metadataType);
         }
     }
 }

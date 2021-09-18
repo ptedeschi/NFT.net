@@ -8,16 +8,23 @@ namespace Tedeschi.NFT.View
     using System.IO;
     using System.Windows.Forms;
     using Tedeschi.NFT.Exception;
-    using Tedeschi.NFT.Helper;
     using Tedeschi.NFT.Resources;
+    using Tedeschi.NFT.Services.Collection;
+    using Tedeschi.NFT.Services.Metadata;
     using Tedeschi.NFT.Util;
 
     public partial class MainForm : Form
     {
-        public MainForm()
+        private readonly ICollectionService collectionService;
+        private readonly IMetadataService metadataService;
+
+        public MainForm(ICollectionService collectionService, IMetadataService metadataService)
         {
             this.InitializeComponent();
             this.DefaultValues();
+
+            this.collectionService = collectionService;
+            this.metadataService = metadataService;
 
             this.Text = $"{Application.ProductName} v{Application.ProductVersion}";
         }
@@ -48,7 +55,7 @@ namespace Tedeschi.NFT.View
             try
             {
                 this.ValidateForUpdateMetadata(outputFolder, metadataImageBaseUri);
-                MetadataHelper.UpdateImageBaseURI(outputFolder, metadataImageBaseUri, metadataType);
+                this.metadataService.Update(outputFolder, metadataImageBaseUri, metadataType);
 
                 MessageBox.Show(Resource.METADATA_UPDATED_SUCCESSFULLY);
             }
@@ -100,7 +107,7 @@ namespace Tedeschi.NFT.View
                 try
                 {
                     this.ValidateForGeneration(layersFolder, outputFolder, metadataImageBaseUri, collectionSize, collectionInitialNumber);
-                    CollectionHelper.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionImagePrefix);
+                    this.collectionService.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionImagePrefix);
 
                     MessageBox.Show(Resource.COLLECTION_CREATED_SUCCESSFULLY);
                 }

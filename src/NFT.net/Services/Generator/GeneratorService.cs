@@ -1,8 +1,8 @@
-﻿// <copyright file="GeneratorHelper.cs" company="Tedeschi">
+﻿// <copyright file="GeneratorService.cs" company="Tedeschi">
 // Copyright (c) Tedeschi. All rights reserved.
 // </copyright>
 
-namespace Tedeschi.NFT.Helper
+namespace Tedeschi.NFT.Services.Generator
 {
     using System;
     using System.Collections.Generic;
@@ -10,9 +10,9 @@ namespace Tedeschi.NFT.Helper
     using Tedeschi.NFT.Model;
     using Tedeschi.NFT.Resources;
 
-    public class GeneratorHelper
+    internal class GeneratorService : IGeneratorService
     {
-        public static List<ImageDescriptor> Create(List<Layer> layers, int collectionSize)
+        public List<ImageDescriptor> Create(List<Layer> layers, int collectionSize)
         {
             var images = new List<ImageDescriptor>();
             var dic = new Dictionary<int, string>();
@@ -22,7 +22,7 @@ namespace Tedeschi.NFT.Helper
 
             while (uniqueImagesCount != collectionSize)
             {
-                var imageDescriptor = UniqueImage(layers);
+                var imageDescriptor = this.UniqueImage(layers);
 
                 if (!dic.ContainsValue(imageDescriptor.Dna))
                 {
@@ -50,7 +50,7 @@ namespace Tedeschi.NFT.Helper
             return images;
         }
 
-        private static ImageDescriptor UniqueImage(List<Layer> layers)
+        private ImageDescriptor UniqueImage(List<Layer> layers)
         {
             var attributes = new List<ImageAttribute>();
             var files = new List<string>();
