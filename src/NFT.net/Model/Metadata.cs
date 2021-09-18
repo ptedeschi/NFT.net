@@ -28,6 +28,9 @@ namespace Tedeschi.NFT.Model
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("filename")]
+        public string Filename { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
 

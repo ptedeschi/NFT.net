@@ -18,6 +18,7 @@ An application developed with .NET Core to generate NFT's through a graphical in
 
  - Multiple layers
  - Metadata generation (Individual and Merged)
+ - Update Metadata Image Base URI after generation (perfect for Pinata IPFS)
  - Weighted Image Randomizer
  - No coding skills required
 
@@ -34,7 +35,7 @@ After that, you can press the Generate button or you can customize some settings
 
 ![enter image description here](https://user-images.githubusercontent.com/6684508/133380651-e08d5972-9897-4095-9d0d-e8da84164b8d.PNG)
 
-The most important idea here is to make sure you are using the tool, respecting some rules for the layer and elements:
+The most important thing to note here is to make sure you are using the tool, respecting some rules for the layer and elements:
 
 #### Layer naming (*trait types*)
 Layer folder names MUST start with a number, representing the order in which the image will be rendered, followed by a separator - (dash) plus the layer name.
@@ -69,6 +70,7 @@ And green and blue have 80% (4/5).
 
 # Projects
 - [Il Pinguino](https://opensea.io/collection/ilpinguino)
+- [Rosquillas](https://opensea.io/collection/rosquillas)
 > If you used NFT<area>.net to generate your NFT collection, please, get in touch.
 I would love to add yours projects to this list.
 
@@ -77,9 +79,7 @@ I would love to add yours projects to this list.
 I sincerely hope this tool can be useful for you.
 I will be honored to know that I was able to contribute back to this community.
 
-If you would like to show your thanks, you can send ETH or NFTs to me. The Ethereum (ERC20) wallet address for this project is: `0x893615196509526dbf85428d284658d12a6dc773`
-
-Cheers!
+If you would like to support this work, you can send ETH or NFTs to me. The Ethereum (ERC20) wallet address for this project is: `0x893615196509526dbf85428d284658d12a6dc773`
 
 **NFT<area>.net**  
 *simple but sweet*

@@ -39,6 +39,29 @@ namespace Tedeschi.NFT.View
             about.Show();
         }
 
+        private void UpdateMetadataImageBaseURIToolStripMenuItemOnClick(object sender, System.EventArgs e)
+        {
+            var outputFolder = this.textBoxOutputFolder.Text;
+            var metadataImageBaseUri = this.textBoxMetadataImageBaseURI.Text;
+            var metadataType = this.comboBoxMetadataType.SelectedIndex;
+
+            try
+            {
+                this.ValidateForUpdateMetadata(outputFolder, metadataImageBaseUri);
+                MetadataHelper.UpdateImageBaseURI(outputFolder, metadataImageBaseUri, metadataType);
+
+                MessageBox.Show(Resource.METADATA_UPDATED_SUCCESSFULLY);
+            }
+            catch (InvalidSettingException ex)
+            {
+                MessageBox.Show(string.Format(Resource.INVALID_SETTING_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void ButtonLayersFolderOnClick(object sender, System.EventArgs e)
         {
             if (this.layersFolderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -76,7 +99,7 @@ namespace Tedeschi.NFT.View
             {
                 try
                 {
-                    this.ValidateInput(layersFolder, outputFolder, metadataImageBaseUri, collectionSize, collectionInitialNumber);
+                    this.ValidateForGeneration(layersFolder, outputFolder, metadataImageBaseUri, collectionSize, collectionInitialNumber);
                     CollectionHelper.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionImagePrefix);
 
                     MessageBox.Show(Resource.COLLECTION_CREATED_SUCCESSFULLY);
@@ -118,7 +141,7 @@ namespace Tedeschi.NFT.View
             bgw.RunWorkerAsync();
         }
 
-        private void ValidateInput(string layersFolder, string outputFolder, string imageBaseUri, string collectionSize, string collectionInitialNumber)
+        private void ValidateForGeneration(string layersFolder, string outputFolder, string imageBaseUri, string collectionSize, string collectionInitialNumber)
         {
             if (!Directory.Exists(layersFolder))
             {
@@ -143,6 +166,19 @@ namespace Tedeschi.NFT.View
             if (!ValidationUtil.IsNumeric(collectionInitialNumber) || int.Parse(collectionInitialNumber) < 0)
             {
                 throw new InvalidSettingException("Collection initial number");
+            }
+        }
+
+        private void ValidateForUpdateMetadata(string outputFolder, string imageBaseUri)
+        {
+            if (!Directory.Exists(outputFolder))
+            {
+                throw new InvalidSettingException("Output folder");
+            }
+
+            if (!ValidationUtil.IsUri(imageBaseUri))
+            {
+                throw new InvalidSettingException("Image Base URI");
             }
         }
     }

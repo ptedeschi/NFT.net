@@ -153,6 +153,15 @@ namespace Tedeschi.NFT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Metadata updated successfully!!!.
+        /// </summary>
+        internal static string METADATA_UPDATED_SUCCESSFULLY {
+            get {
+                return ResourceManager.GetString("METADATA_UPDATED_SUCCESSFULLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unknown error has happened: {0}.
         /// </summary>
         internal static string UNKNOWN_ERROR {

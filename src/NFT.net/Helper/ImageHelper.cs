@@ -23,6 +23,9 @@ namespace Tedeschi.NFT.Helper
                 var width = tempBitmap.Width;
                 var height = tempBitmap.Height;
 
+                // Disposing tempBitmap
+                tempBitmap?.Dispose();
+
                 baseImage = new Bitmap(width, height);
 
                 foreach (var image in files)

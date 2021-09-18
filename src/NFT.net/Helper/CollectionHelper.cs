@@ -8,7 +8,6 @@ namespace Tedeschi.NFT.Helper
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
-    using Newtonsoft.Json;
     using Tedeschi.NFT.Model;
 
     public class CollectionHelper
@@ -45,6 +44,7 @@ namespace Tedeschi.NFT.Helper
                     Id = collectionNumber,
                     Dna = item.Dna,
                     Name = filenameWithoutExtension,
+                    Filename = System.Uri.EscapeDataString(filename),
                     Description = metadataDescription,
                     Image = $"{metadataImageBaseUri}/{System.Uri.EscapeDataString(filename)}",
                     Attributes = item.Attributes.Select(i => new Attribute { Layer = i.Layer, Value = i.Value }).ToList(),
@@ -54,44 +54,13 @@ namespace Tedeschi.NFT.Helper
 
                 combinedImages.Save($"{imagesFoder}\\{filename}", ImageFormat.Png);
 
+                // Disposing image
+                combinedImages?.Dispose();
+
                 collectionNumber++;
             }
 
-            var metadataLocation = $"{outputFolder}\\{Constants.MetadataDefault.FolderName}";
-            var serializerSettings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-            };
-
-            switch (metadataType)
-            {
-                case Constants.MetadataType.None:
-                    break;
-
-                case Constants.MetadataType.Merged:
-                    if (!Directory.Exists(metadataLocation))
-                    {
-                        Directory.CreateDirectory(metadataLocation);
-                    }
-
-                    var jsonMerged = JsonConvert.SerializeObject(metadataList, Formatting.Indented, serializerSettings);
-                    File.WriteAllText($"{metadataLocation}\\{Constants.MetadataDefault.MergedFilename}{Constants.FileExtension.Json}", jsonMerged);
-                    break;
-
-                case Constants.MetadataType.Individual:
-                    if (!Directory.Exists(metadataLocation))
-                    {
-                        Directory.CreateDirectory(metadataLocation);
-                    }
-
-                    foreach (var metadata in metadataList)
-                    {
-                        var jsonIndividual = JsonConvert.SerializeObject(metadata, Formatting.Indented, serializerSettings);
-                        File.WriteAllText($"{metadataLocation}\\{metadata.Name}{Constants.FileExtension.Json}", jsonIndividual);
-                    }
-
-                    break;
-            }
+            MetadataHelper.GenerateMetadata(outputFolder, metadataList, metadataType);
         }
     }
 }

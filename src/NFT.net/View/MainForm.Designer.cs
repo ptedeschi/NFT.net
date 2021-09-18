@@ -58,6 +58,8 @@ namespace Tedeschi.NFT.View
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateMetadataImageBaseURIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -129,10 +131,10 @@ namespace Tedeschi.NFT.View
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Collection";
             // 
-            // textBoxCollectionFilenamePrefix
+            // textBoxCollectionImagePrefix
             // 
             this.textBoxCollectionImagePrefix.Location = new System.Drawing.Point(118, 86);
-            this.textBoxCollectionImagePrefix.Name = "textBoxCollectionFilenamePrefix";
+            this.textBoxCollectionImagePrefix.Name = "textBoxCollectionImagePrefix";
             this.textBoxCollectionImagePrefix.Size = new System.Drawing.Size(121, 23);
             this.textBoxCollectionImagePrefix.TabIndex = 12;
             // 
@@ -251,10 +253,10 @@ namespace Tedeschi.NFT.View
             this.label5.TabIndex = 14;
             this.label5.Text = "Description";
             // 
-            // textBoxMetadataProjectName
+            // textBoxMetadataDescription
             // 
             this.textBoxMetadataDescription.Location = new System.Drawing.Point(142, 49);
-            this.textBoxMetadataDescription.Name = "textBoxMetadataProjectName";
+            this.textBoxMetadataDescription.Name = "textBoxMetadataDescription";
             this.textBoxMetadataDescription.Size = new System.Drawing.Size(317, 23);
             this.textBoxMetadataDescription.TabIndex = 7;
             // 
@@ -276,6 +278,7 @@ namespace Tedeschi.NFT.View
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -294,9 +297,24 @@ namespace Tedeschi.NFT.View
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutMenuItemOnClick);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateMetadataImageBaseURIToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // updateMetadataImageBaseURIToolStripMenuItem
+            // 
+            this.updateMetadataImageBaseURIToolStripMenuItem.Name = "updateMetadataImageBaseURIToolStripMenuItem";
+            this.updateMetadataImageBaseURIToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.updateMetadataImageBaseURIToolStripMenuItem.Text = "Update Metadata Image Base URI";
+            this.updateMetadataImageBaseURIToolStripMenuItem.Click += new System.EventHandler(this.UpdateMetadataImageBaseURIToolStripMenuItemOnClick);
             // 
             // MainForm
             // 
@@ -362,6 +380,8 @@ namespace Tedeschi.NFT.View
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateMetadataImageBaseURIToolStripMenuItem;
     }
 }
 
