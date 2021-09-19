@@ -43,7 +43,7 @@ namespace Tedeschi.NFT.Services.Metadata
                     foreach (var metadata in metadataList)
                     {
                         var jsonIndividual = JsonConvert.SerializeObject(metadata, Formatting.Indented, serializerSettings);
-                        File.WriteAllText($"{metadataLocation}\\{metadata.Name}{Constants.FileExtension.Json}", jsonIndividual);
+                        File.WriteAllText($"{metadataLocation}\\{metadata.Id}{Constants.FileExtension.Json}", jsonIndividual);
                     }
 
                     break;

@@ -48,19 +48,18 @@ namespace Tedeschi.NFT.Services.Collection
             {
                 var combinedImages = this.imageService.Combine(item.Files.ToArray());
                 var filename = $"{collectionNumber}{Constants.FileExtension.Png}";
-                var filenameWithoutExtension = $"{collectionNumber}";
+                var name = $"{collectionNumber}";
 
                 if (!string.IsNullOrWhiteSpace(collectionImagePrefix))
                 {
-                    filename = $"{collectionImagePrefix}{collectionNumber}{Constants.FileExtension.Png}";
-                    filenameWithoutExtension = $"{collectionImagePrefix}{collectionNumber}";
+                    name = $"{collectionImagePrefix}{collectionNumber}";
                 }
 
                 var metadata = new Metadata
                 {
                     Id = collectionNumber,
                     Dna = item.Dna,
-                    Name = filenameWithoutExtension,
+                    Name = name,
                     Filename = System.Uri.EscapeDataString(filename),
                     Description = metadataDescription,
                     Image = $"{metadataImageBaseUri}/{System.Uri.EscapeDataString(filename)}",
