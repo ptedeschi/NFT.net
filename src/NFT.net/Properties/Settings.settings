@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Tedeschi.NFT.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LayersFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="OutputFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MetadataType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MetadataDescription" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Made by NFT.net</Value>
+    </Setting>
+    <Setting Name="MetadataImageBaseURI" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://someurl.com/nft</Value>
+    </Setting>
+    <Setting Name="CollectionSize" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="CollectionInitialNumber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="CollectionImageNamePrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">nft #</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

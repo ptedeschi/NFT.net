@@ -21,7 +21,6 @@ namespace Tedeschi.NFT.View
         public MainForm(ICollectionService collectionService, IMetadataService metadataService)
         {
             this.InitializeComponent();
-            this.DefaultValues();
 
             this.collectionService = collectionService;
             this.metadataService = metadataService;
@@ -29,15 +28,40 @@ namespace Tedeschi.NFT.View
             this.Text = $"{Application.ProductName} v{Application.ProductVersion}";
         }
 
-        private void DefaultValues()
+        private void MainForm_OnLoad(object sender, System.EventArgs e)
         {
-            this.comboBoxMetadataType.SelectedIndex = Constants.MetadataDefault.DefaultType;
-            this.textBoxMetadataDescription.Text = Constants.MetadataDefault.DefaultProjectName;
-            this.textBoxMetadataImageBaseURI.Text = Constants.MetadataDefault.DefaultImageBaseUri;
+            // Folders
+            this.textBoxLayersFolder.Text = Properties.Settings.Default.LayersFolder;
+            this.textBoxOutputFolder.Text = Properties.Settings.Default.OutputFolder;
 
-            this.textBoxCollectionSize.Text = Constants.CollectionDefault.DefaultSize;
-            this.textBoxCollectionInitialNumber.Text = Constants.CollectionDefault.DefaultInitialNumber;
-            this.textBoxCollectionImagePrefix.Text = Constants.CollectionDefault.DefaultFilenamePrefix;
+            // Metadata
+            this.comboBoxMetadataType.SelectedIndex = Properties.Settings.Default.MetadataType;
+            this.textBoxMetadataDescription.Text = Properties.Settings.Default.MetadataDescription;
+            this.textBoxMetadataImageBaseURI.Text = Properties.Settings.Default.MetadataImageBaseURI;
+
+            // Collection
+            this.textBoxCollectionSize.Text = Properties.Settings.Default.CollectionSize;
+            this.textBoxCollectionInitialNumber.Text = Properties.Settings.Default.CollectionInitialNumber;
+            this.textBoxCollectionImagePrefix.Text = Properties.Settings.Default.CollectionImageNamePrefix;
+        }
+
+        private void MainForm_OnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Folders
+            Properties.Settings.Default.LayersFolder = this.textBoxLayersFolder.Text;
+            Properties.Settings.Default.OutputFolder = this.textBoxOutputFolder.Text;
+
+            // Metadata
+            Properties.Settings.Default.MetadataType = this.comboBoxMetadataType.SelectedIndex;
+            Properties.Settings.Default.MetadataDescription = this.textBoxMetadataDescription.Text;
+            Properties.Settings.Default.MetadataImageBaseURI = this.textBoxMetadataImageBaseURI.Text;
+
+            // Collection
+            Properties.Settings.Default.CollectionSize = this.textBoxCollectionSize.Text;
+            Properties.Settings.Default.CollectionInitialNumber = this.textBoxCollectionInitialNumber.Text;
+            Properties.Settings.Default.CollectionImageNamePrefix = this.textBoxCollectionImagePrefix.Text;
+
+            Properties.Settings.Default.Save();
         }
 
         private void AboutMenuItemOnClick(object sender, System.EventArgs e)

@@ -27,18 +27,8 @@ namespace Tedeschi.NFT
 
         public static class MetadataDefault
         {
-            public const int DefaultType = MetadataType.Individual;
             public const string FolderName = "metadata";
             public const string MergedFilename = "metadata";
-            public const string DefaultProjectName = "Made by NFT.net";
-            public const string DefaultImageBaseUri = "https://someurl.com/nft";
-        }
-
-        public static class CollectionDefault
-        {
-            public const string DefaultSize = "10";
-            public const string DefaultInitialNumber = "1";
-            public const string DefaultFilenamePrefix = "nft #";
         }
 
         public static class FileExtension
