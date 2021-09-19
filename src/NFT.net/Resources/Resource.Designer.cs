@@ -70,6 +70,19 @@ namespace Tedeschi.NFT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This process will change the ENTIRE Image base URI from the previous metadata. This is useful when you don&apos;t have access to this kind of information before generating and uploading the image directory (e.g. Pinata IPFS).
+        ///
+        ///Make sure to update the Metadata Image Base URI field with the expected value.
+        ///
+        ///Do you want to continue?.
+        /// </summary>
+        internal static string CONFIRM_METADATA_UPDATE {
+            get {
+                return ResourceManager.GetString("CONFIRM_METADATA_UPDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap copy {

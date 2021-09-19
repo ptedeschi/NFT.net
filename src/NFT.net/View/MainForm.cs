@@ -48,24 +48,29 @@ namespace Tedeschi.NFT.View
 
         private void UpdateMetadataImageBaseURIToolStripMenuItemOnClick(object sender, System.EventArgs e)
         {
-            var outputFolder = this.textBoxOutputFolder.Text;
-            var metadataImageBaseUri = this.textBoxMetadataImageBaseURI.Text;
-            var metadataType = this.comboBoxMetadataType.SelectedIndex;
+            var dialogResult = MessageBox.Show(Resource.CONFIRM_METADATA_UPDATE, Application.ProductName, MessageBoxButtons.YesNo);
 
-            try
+            if (dialogResult == DialogResult.Yes)
             {
-                this.ValidateForUpdateMetadata(outputFolder, metadataImageBaseUri);
-                this.metadataService.Update(outputFolder, metadataImageBaseUri, metadataType);
+                var outputFolder = this.textBoxOutputFolder.Text;
+                var metadataImageBaseUri = this.textBoxMetadataImageBaseURI.Text;
+                var metadataType = this.comboBoxMetadataType.SelectedIndex;
 
-                MessageBox.Show(Resource.METADATA_UPDATED_SUCCESSFULLY);
-            }
-            catch (InvalidSettingException ex)
-            {
-                MessageBox.Show(string.Format(Resource.INVALID_SETTING_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    this.ValidateForUpdateMetadata(outputFolder, metadataImageBaseUri);
+                    this.metadataService.Update(outputFolder, metadataImageBaseUri, metadataType);
+
+                    MessageBox.Show(Resource.METADATA_UPDATED_SUCCESSFULLY);
+                }
+                catch (InvalidSettingException ex)
+                {
+                    MessageBox.Show(string.Format(Resource.INVALID_SETTING_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

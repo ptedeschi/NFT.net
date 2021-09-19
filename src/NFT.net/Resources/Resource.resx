@@ -160,4 +160,11 @@
   <data name="METADATA_UPDATED_SUCCESSFULLY" xml:space="preserve">
     <value>Metadata updated successfully!!!</value>
   </data>
+  <data name="CONFIRM_METADATA_UPDATE" xml:space="preserve">
+    <value>This process will change the ENTIRE Image base URI from the previous metadata. This is useful when you don't have access to this kind of information before generating and uploading the image directory (e.g. Pinata IPFS).
+
+Make sure to update the Metadata Image Base URI field with the expected value.
+
+Do you want to continue?</value>
+  </data>
 </root>
