@@ -4,10 +4,12 @@
 
 namespace Tedeschi.NFT.Services.Collection
 {
+    using System;
     using System.Collections.Generic;
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
+    using Tedeschi.NFT.Event;
     using Tedeschi.NFT.Model;
     using Tedeschi.NFT.Services.Generator;
     using Tedeschi.NFT.Services.Image;
@@ -28,6 +30,8 @@ namespace Tedeschi.NFT.Services.Collection
             this.imageService = imageService;
             this.metadataService = metadataService;
         }
+
+        public event EventHandler<ImageEventArgs> CollectionItemStatus;
 
         public void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, int collectionSize, int collectionInitialNumber, string collectionImagePrefix)
         {
@@ -60,15 +64,22 @@ namespace Tedeschi.NFT.Services.Collection
                     Id = collectionNumber,
                     Dna = item.Dna,
                     Name = name,
-                    Filename = System.Uri.EscapeDataString(filename),
+                    Filename = Uri.EscapeDataString(filename),
                     Description = metadataDescription,
-                    Image = $"{metadataImageBaseUri}/{System.Uri.EscapeDataString(filename)}",
-                    Attributes = item.Attributes.Select(i => new Attribute { Layer = i.Layer, Value = i.Value }).ToList(),
+                    Image = $"{metadataImageBaseUri}/{Uri.EscapeDataString(filename)}",
+                    Attributes = item.Attributes.Select(i => new Model.Attribute { Layer = i.Layer, Value = i.Value }).ToList(),
                 };
 
                 metadataList.Add(metadata);
 
                 combinedImages.Save($"{imagesFoder}\\{filename}", ImageFormat.Png);
+
+                var args = new ImageEventArgs
+                {
+                    CollectionItemId = collectionNumber,
+                };
+
+                this.OnCollectionItemProcessed(args);
 
                 // Disposing image
                 combinedImages?.Dispose();
@@ -77,6 +88,11 @@ namespace Tedeschi.NFT.Services.Collection
             }
 
             this.metadataService.Generate(outputFolder, metadataList, metadataType);
+        }
+
+        private void OnCollectionItemProcessed(ImageEventArgs eventArgs)
+        {
+            this.CollectionItemStatus?.Invoke(this, eventArgs);
         }
     }
 }

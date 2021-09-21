@@ -167,4 +167,7 @@ Make sure to update the Metadata Image Base URI field with the expected value.
 
 Do you want to continue?</value>
   </data>
+  <data name="PROCESSING_COLLECTION_ITEM" xml:space="preserve">
+    <value>Processing Collection Item {0} of {1}</value>
+  </data>
 </root>

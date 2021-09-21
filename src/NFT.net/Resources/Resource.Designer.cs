@@ -175,6 +175,15 @@ namespace Tedeschi.NFT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Processing Collection Item {0} of {1}.
+        /// </summary>
+        internal static string PROCESSING_COLLECTION_ITEM {
+            get {
+                return ResourceManager.GetString("PROCESSING_COLLECTION_ITEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unknown error has happened: {0}.
         /// </summary>
         internal static string UNKNOWN_ERROR {

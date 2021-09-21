@@ -4,9 +4,11 @@
 
 namespace Tedeschi.NFT.View
 {
+    using System;
     using System.ComponentModel;
     using System.IO;
     using System.Windows.Forms;
+    using Tedeschi.NFT.Event;
     using Tedeschi.NFT.Exception;
     using Tedeschi.NFT.Resources;
     using Tedeschi.NFT.Services.Collection;
@@ -136,6 +138,7 @@ namespace Tedeschi.NFT.View
                 try
                 {
                     this.ValidateForGeneration(layersFolder, outputFolder, metadataImageBaseUri, collectionSize, collectionInitialNumber);
+                    this.collectionService.CollectionItemStatus += new EventHandler<ImageEventArgs>(this.OnCollectionItemProcessed);
                     this.collectionService.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionImagePrefix);
 
                     MessageBox.Show(Resource.COLLECTION_CREATED_SUCCESSFULLY);
@@ -175,6 +178,16 @@ namespace Tedeschi.NFT.View
             ((Button)sender).Enabled = false;
 
             bgw.RunWorkerAsync();
+        }
+
+        private void OnCollectionItemProcessed(object sender, ImageEventArgs e)
+        {
+            var status = string.Format(Resource.PROCESSING_COLLECTION_ITEM, e.CollectionItemId, this.textBoxCollectionSize.Text);
+
+            this.Invoke(new Action(() =>
+            {
+                this.toolStripStatus.Text = status;
+            }));
         }
 
         private void ValidateForGeneration(string layersFolder, string outputFolder, string imageBaseUri, string collectionSize, string collectionInitialNumber)
