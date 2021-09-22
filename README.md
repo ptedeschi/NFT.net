@@ -21,6 +21,7 @@ An application developed with .NET Core to generate NFT's through a graphical in
  - Update Metadata Image Base URI after generation (perfect for Pinata IPFS)
  - Weighted Image Randomizer
  - No coding skills required
+ - No ads
 
 # How to start
 Download the most recent release version [here](https://github.com/ptedeschi/NFT.net/releases) and execute it.
@@ -33,7 +34,7 @@ Once you run the tool, you will need to select the folder where the NFT layers a
 
 After that, you can press the Generate button or you can customize some settings such as the Collection Size, Initial numbers, filename prefix etc.
 
-![enter image description here](https://user-images.githubusercontent.com/6684508/133380651-e08d5972-9897-4095-9d0d-e8da84164b8d.PNG)
+![](https://user-images.githubusercontent.com/6684508/133380651-e08d5972-9897-4095-9d0d-e8da84164b8d.PNG)
 
 The most important thing to note here is to make sure you are using the tool, respecting some rules for the layer and elements:
 
@@ -62,15 +63,24 @@ This is how you can weigh them:
 
 By using the plus sign (+) and a number, you are telling NFT<area>.net the chances to choose images.
 
-In this case, red has 20% (1/5).
-Orange and yellow have 60% (3/5).
-And green and blue have 80% (4/5).
+In this case, red has 6% (1/15).  
+Orange and yellow have 20% (3/15).  
+And green and blue have 27% (4/15).  
 
-> If no weight is defined in the suffix, the total number of files present in the layers folder will be used as weight so that in the end the result is 100%
+> If no weight is defined in the suffix, the total number of files present in the layers folder will be used as weight so everyone will have the same chances
+
+A new tool was recently added so that you can get a better overview of the probabilities of your features.
+You can access it by clicking Tools > Check Trait Weights
+
+![](https://user-images.githubusercontent.com/6684508/134296171-dd9966f8-20ed-4311-9502-0e16d0eb5c9e.png)
 
 # Projects
 - [Il Pinguino](https://opensea.io/collection/ilpinguino)
+![](https://lh3.googleusercontent.com/P6JybURJdbvL1QaMhIpGZJF4Hs5ypD3Sdq6ROErkbBZHkgGuTqNuibsXASi7affssffYU9BEXyKkS680qzLEzK6F-N6mqaGslJxQbx0=h600)
+
 - [Rosquillas](https://opensea.io/collection/rosquillas)
+![](https://lh3.googleusercontent.com/Vdgy7zqiH64ezMOSx_uppYq1fTAtAsrrfQSYMuJ0ky07SmCOvEfkaMeZkfJJ575cqwd0VlxumTsFLUEAYefekDe3pCnTbcg1AmNPoQ=h600)
+
 > If you used NFT<area>.net to generate your NFT collection, please, get in touch.
 I would love to add yours projects to this list.
 
