@@ -187,6 +187,9 @@ namespace Tedeschi.NFT.View
             this.Invoke(new Action(() =>
             {
                 this.toolStripStatus.Text = status;
+
+                this.toolStripProgressBar.Maximum = int.Parse(this.textBoxCollectionSize.Text);
+                this.toolStripProgressBar.Value = e.CollectionItemId;
             }));
         }
 
