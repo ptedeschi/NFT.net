@@ -34,7 +34,7 @@ Once you run the tool, you will need to select the folder where the NFT layers a
 
 After that, you can press the Generate button or you can customize some settings such as the Collection Size, Initial numbers, filename prefix etc.
 
-![](https://user-images.githubusercontent.com/6684508/133380651-e08d5972-9897-4095-9d0d-e8da84164b8d.PNG)
+![](https://user-images.githubusercontent.com/6684508/134297322-618b1a15-17f6-4683-b65f-afc415b87768.png)
 
 The most important thing to note here is to make sure you are using the tool, respecting some rules for the layer and elements:
 
