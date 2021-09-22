@@ -34,7 +34,7 @@ namespace Tedeschi.NFT
             // Get instance of Autofac Container
             container = Configure();
 
-            Application.Run(new MainForm(container.Resolve<ICollectionService>(), container.Resolve<IMetadataService>()));
+            Application.Run(new MainForm(container.Resolve<ILayerService>(), container.Resolve<ICollectionService>(), container.Resolve<IMetadataService>()));
         }
 
         /// <summary>
@@ -50,8 +50,6 @@ namespace Tedeschi.NFT
             builder.RegisterType<ImageService>().As<IImageService>();
             builder.RegisterType<GeneratorService>().As<IGeneratorService>();
             builder.RegisterType<MetadataService>().As<IMetadataService>();
-
-            ////builder.RegisterType<MainForm>();
 
             return builder.Build();
         }

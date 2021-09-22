@@ -12,25 +12,28 @@ namespace Tedeschi.NFT.View
     using Tedeschi.NFT.Exception;
     using Tedeschi.NFT.Resources;
     using Tedeschi.NFT.Services.Collection;
+    using Tedeschi.NFT.Services.Layer;
     using Tedeschi.NFT.Services.Metadata;
     using Tedeschi.NFT.Util;
 
     public partial class MainForm : Form
     {
+        private readonly ILayerService layerService;
         private readonly ICollectionService collectionService;
         private readonly IMetadataService metadataService;
 
-        public MainForm(ICollectionService collectionService, IMetadataService metadataService)
+        public MainForm(ILayerService layerService, ICollectionService collectionService, IMetadataService metadataService)
         {
             this.InitializeComponent();
 
+            this.layerService = layerService;
             this.collectionService = collectionService;
             this.metadataService = metadataService;
 
             this.Text = $"{Application.ProductName} v{Application.ProductVersion}";
         }
 
-        private void MainForm_OnLoad(object sender, System.EventArgs e)
+        private void MainForm_OnLoad(object sender, EventArgs e)
         {
             // Folders
             this.textBoxLayersFolder.Text = Properties.Settings.Default.LayersFolder;
@@ -66,13 +69,13 @@ namespace Tedeschi.NFT.View
             Properties.Settings.Default.Save();
         }
 
-        private void AboutMenuItemOnClick(object sender, System.EventArgs e)
+        private void AboutMenuItemOnClick(object sender, EventArgs e)
         {
             var about = new AboutForm();
             about.Show();
         }
 
-        private void UpdateMetadataImageBaseURIToolStripMenuItemOnClick(object sender, System.EventArgs e)
+        private void UpdateMetadataImageBaseURIToolStripMenuItemOnClick(object sender, EventArgs e)
         {
             var dialogResult = MessageBox.Show(Resource.CONFIRM_METADATA_UPDATE, Application.ProductName, MessageBoxButtons.YesNo);
 
@@ -93,14 +96,38 @@ namespace Tedeschi.NFT.View
                 {
                     MessageBox.Show(string.Format(Resource.INVALID_SETTING_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void ButtonLayersFolderOnClick(object sender, System.EventArgs e)
+        private void CheckTraitWeightsToolStripMenuItemOnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var layersFolder = this.textBoxLayersFolder.Text;
+
+                this.ValidateForCheckTraitWeights(layersFolder);
+
+                var layers = this.layerService.Load(layersFolder);
+
+                var weightedForm = new WeightedForm();
+                weightedForm.Process(layers);
+                weightedForm.ShowDialog();
+            }
+            catch (InvalidSettingException ex)
+            {
+                MessageBox.Show(string.Format(Resource.INVALID_SETTING_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ButtonLayersFolderOnClick(object sender, EventArgs e)
         {
             if (this.layersFolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -108,7 +135,7 @@ namespace Tedeschi.NFT.View
             }
         }
 
-        private void ButtonOutputFolderOnClick(object sender, System.EventArgs e)
+        private void ButtonOutputFolderOnClick(object sender, EventArgs e)
         {
             if (this.outputFolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -116,7 +143,7 @@ namespace Tedeschi.NFT.View
             }
         }
 
-        private void ButtonGenerateOnClick(object sender, System.EventArgs e)
+        private void ButtonGenerateOnClick(object sender, EventArgs e)
         {
             // Remove focus from others
             this.ActiveControl = null;
@@ -159,7 +186,7 @@ namespace Tedeschi.NFT.View
                 {
                     MessageBox.Show(Resource.DUPLICATED_DNA_MAX_ATTEMPT_ERROR, Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -169,6 +196,15 @@ namespace Tedeschi.NFT.View
             {
                 this.Cursor = Cursors.Default;
                 ((Button)sender).Enabled = true;
+
+                this.statusStrip.Text = string.Empty;
+                this.toolStripProgressBar.Value = 0;
+
+                this.Invoke(new Action(() =>
+                {
+                    this.toolStripStatus.Text = string.Empty;
+                    this.toolStripProgressBar.Value = 0;
+                }));
 
                 // Remove focus from others
                 this.ActiveControl = null;
@@ -231,6 +267,14 @@ namespace Tedeschi.NFT.View
             if (!ValidationUtil.IsUri(imageBaseUri))
             {
                 throw new InvalidSettingException("Image Base URI");
+            }
+        }
+
+        private void ValidateForCheckTraitWeights(string layersFolder)
+        {
+            if (!Directory.Exists(layersFolder))
+            {
+                throw new InvalidSettingException("Layers folder");
             }
         }
     }

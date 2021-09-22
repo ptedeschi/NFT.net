@@ -54,11 +54,12 @@ namespace Tedeschi.NFT.View
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxMetadataDescription = new System.Windows.Forms.TextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateMetadataImageBaseURIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkTraitWeightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
@@ -271,15 +272,15 @@ namespace Tedeschi.NFT.View
             this.statusStrip.Size = new System.Drawing.Size(490, 22);
             this.statusStrip.TabIndex = 10;
             // 
-            // toolStripStatus
-            // 
-            this.toolStripStatus.Name = "toolStripStatus";
-            this.toolStripStatus.Size = new System.Drawing.Size(0, 17);
-            // 
             // toolStripProgressBar
             // 
             this.toolStripProgressBar.Name = "toolStripProgressBar";
             this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
+            // 
+            // toolStripStatus
+            // 
+            this.toolStripStatus.Name = "toolStripStatus";
+            this.toolStripStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // menuStrip
             // 
@@ -295,6 +296,7 @@ namespace Tedeschi.NFT.View
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkTraitWeightsToolStripMenuItem,
             this.updateMetadataImageBaseURIToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
@@ -307,6 +309,13 @@ namespace Tedeschi.NFT.View
             this.updateMetadataImageBaseURIToolStripMenuItem.Text = "Update Metadata Image Base URI";
             this.updateMetadataImageBaseURIToolStripMenuItem.Click += new System.EventHandler(this.UpdateMetadataImageBaseURIToolStripMenuItemOnClick);
             // 
+            // checkTraitWeightsToolStripMenuItem
+            // 
+            this.checkTraitWeightsToolStripMenuItem.Name = "checkTraitWeightsToolStripMenuItem";
+            this.checkTraitWeightsToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.checkTraitWeightsToolStripMenuItem.Text = "Check Trait Weights";
+            this.checkTraitWeightsToolStripMenuItem.Click += new System.EventHandler(this.CheckTraitWeightsToolStripMenuItemOnClick);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -318,7 +327,7 @@ namespace Tedeschi.NFT.View
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutMenuItemOnClick);
             // 
@@ -391,6 +400,7 @@ namespace Tedeschi.NFT.View
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateMetadataImageBaseURIToolStripMenuItem;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
+        private System.Windows.Forms.ToolStripMenuItem checkTraitWeightsToolStripMenuItem;
     }
 }
 
