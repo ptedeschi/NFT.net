@@ -38,7 +38,7 @@ After that, you can press the Generate button or you can customize some settings
 
 The most important thing to note here is to make sure you are using the tool, respecting some rules for the layer and elements:
 
-#### Layer naming (*trait types*)
+## Layer naming (*trait types*)
 Layer folder names MUST start with a number, representing the order in which the image will be rendered, followed by a separator - (dash) plus the layer name.
 For example:
  - 01-background
@@ -47,7 +47,7 @@ For example:
  
 > Try to use a good name for your layers because this name will be used to fill in the Metadata *trait_type* value
 
-#### Layer elements (*trait values*)
+## Layer elements (*trait values*)
 All images used to create the NFT MUST have the same dimensions (width and height). Subfolders are not supported.
 
 If you want to add weighting ability to your images, you can do so by adding weight as a suffix to the image filename.
