@@ -75,11 +75,15 @@ You can access it by clicking Tools > Check Trait Weights
 ![](https://user-images.githubusercontent.com/6684508/134296171-dd9966f8-20ed-4311-9502-0e16d0eb5c9e.png)
 
 # Projects
-- [Il Pinguino](https://opensea.io/collection/ilpinguino)
+- [Il Pinguino](https://opensea.io/collection/ilpinguino)  
 ![](https://lh3.googleusercontent.com/P6JybURJdbvL1QaMhIpGZJF4Hs5ypD3Sdq6ROErkbBZHkgGuTqNuibsXASi7affssffYU9BEXyKkS680qzLEzK6F-N6mqaGslJxQbx0=h600)
 
-- [Rosquillas](https://opensea.io/collection/rosquillas)
+- [Rosquillas](https://opensea.io/collection/rosquillas)  
 ![](https://lh3.googleusercontent.com/Vdgy7zqiH64ezMOSx_uppYq1fTAtAsrrfQSYMuJ0ky07SmCOvEfkaMeZkfJJ575cqwd0VlxumTsFLUEAYefekDe3pCnTbcg1AmNPoQ=h600)
+
+- [Monero Lisa](https://opensea.io/collection/monero-lisa)  
+![](https://lh3.googleusercontent.com/xcytYnEuYaqeI0LSdyDviwOty-V1koW5RPJ_jObR23z1mEmN2k_Eu8Jxt-RzzLSAbz5gd_R4E5YyG0peBQF8rKznvlhxZsaV2VtcBA=h600)
+
 
 > If you used NFT<area>.net to generate your NFT collection, please, get in touch.
 I would love to add yours projects to this list.
