@@ -7,6 +7,7 @@ namespace Tedeschi.NFT.Services.Layer
     using System.Collections.Generic;
     using System.Dynamic;
     using System.IO;
+    using System.Linq;
     using Tedeschi.NFT.Exception;
     using Tedeschi.NFT.Model;
     using Tedeschi.NFT.Util;
@@ -17,6 +18,9 @@ namespace Tedeschi.NFT.Services.Layer
         public List<Layer> Load(string path)
         {
             var folders = Directory.GetDirectories(path);
+
+            // Ensure layers are sorted correctly
+            folders = folders.OrderBy(x => x).ToArray();
 
             return this.HandleLayers(folders);
         }

@@ -1,18 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<RunTimeIdentifiers>win10-x64</RunTimeIdentifiers>
-		<UseWindowsForms>true</UseWindowsForms>
+		<TargetFramework>net5.0</TargetFramework>
+		<Nullable>enable</Nullable>
 		<RootNamespace>Tedeschi.NFT</RootNamespace>
 		<AssemblyName>NFT.net</AssemblyName>
 		<Version>1.2.0</Version>
 		<Authors>Tedeschi</Authors>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="0.10.3" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.10.3" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="0.10.3" />
 		<PackageReference Include="Autofac" Version="6.2.0" />
+		<PackageReference Include="Dotnet.Bundle" Version="0.9.13" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
@@ -26,32 +28,4 @@
 			<HintPath>..\..\dependencies\Weighted Randomizer\Weighted Randomizer Net Standard.dll</HintPath>
 		</Reference>
 	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Update="Properties\Settings.Designer.cs">
-			<DesignTimeSharedInput>True</DesignTimeSharedInput>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Settings.settings</DependentUpon>
-		</Compile>
-		<Compile Update="Resources\Resource.Designer.cs">
-			<DesignTime>True</DesignTime>
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resource.resx</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Update="Resources\Resource.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resource.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="Properties\Settings.settings">
-			<Generator>SettingsSingleFileGenerator</Generator>
-			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
-		</None>
-	</ItemGroup>
-
 </Project>
