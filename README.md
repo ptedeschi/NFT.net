@@ -81,8 +81,8 @@ You can access it by clicking Tools > Check Trait Weights
 - [Rosquillas](https://opensea.io/collection/rosquillas)  
 ![](https://lh3.googleusercontent.com/Vdgy7zqiH64ezMOSx_uppYq1fTAtAsrrfQSYMuJ0ky07SmCOvEfkaMeZkfJJ575cqwd0VlxumTsFLUEAYefekDe3pCnTbcg1AmNPoQ=h600)
 
-- [Monero Lisa](https://opensea.io/collection/monero-lisa)  
-![](https://lh3.googleusercontent.com/xcytYnEuYaqeI0LSdyDviwOty-V1koW5RPJ_jObR23z1mEmN2k_Eu8Jxt-RzzLSAbz5gd_R4E5YyG0peBQF8rKznvlhxZsaV2VtcBA=h600)
+- [Monero Lisa Genesis](https://opensea.io/collection/monero-lisa-genesis)  
+![](https://lh3.googleusercontent.com/xcytYnEuYaqeI0LSdyDviwOty-V1koW5RPJ_jObR23z1mEmN2k_Eu8Jxt-RzzLSAbz5gd_R4E5YyG0peBQF8rKznvlhxZsaV2VtcBA=h400)
 
 
 > If you used NFT<area>.net to generate your NFT collection, please, get in touch.
