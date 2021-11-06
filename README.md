@@ -67,6 +67,8 @@ In this case, red has 6% (1/15).
 Orange and yellow have 20% (3/15).  
 And green and blue have 27% (4/15).  
 
+> Currently, only integers numbers are supported for setting weights!
+
 > If no weight is defined in the suffix, the total number of files present in the layers folder will be used as weight so everyone will have the same chances
 
 A new tool was recently added so that you can get a better overview of the probabilities of your features.
