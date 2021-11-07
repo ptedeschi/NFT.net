@@ -10,12 +10,13 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="0.10.3" />
-		<PackageReference Include="Avalonia.Desktop" Version="0.10.3" />
-		<PackageReference Include="Avalonia.Diagnostics" Version="0.10.3" />
+		<PackageReference Include="Avalonia" Version="0.10.4" />
+		<PackageReference Include="Avalonia.Desktop" Version="0.10.4" />
+		<PackageReference Include="Avalonia.Diagnostics" Version="0.10.4" />
 		<PackageReference Include="Autofac" Version="6.2.0" />
 		<PackageReference Include="Dotnet.Bundle" Version="0.9.13" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="runtime.osx.10.10-x64.CoreCompat.System.Drawing" Version="6.0.5.128" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -23,6 +23,11 @@ namespace NFT.net.View
 
         private TextBox textBoxLayersFolder;
         private TextBox textBoxOutputFolder;
+        private TextBox textBoxMetadataDescription;
+        private TextBox textBoxMetadataImageBaseURI;
+        private NumericUpDown textBoxCollectionSize;
+        private NumericUpDown textBoxCollectionInitialNumber;
+        private TextBox textBoxCollectionImagePrefix;
 
         public MainWindow()
         {
@@ -39,6 +44,18 @@ namespace NFT.net.View
 
             this.textBoxLayersFolder = this.FindControl<TextBox>("textBoxLayersFolder");
             this.textBoxOutputFolder = this.FindControl<TextBox>("textBoxOutputFolder");
+
+            this.textBoxMetadataDescription = this.FindControl<TextBox>("textBoxMetadataDescription");
+            this.textBoxMetadataImageBaseURI = this.FindControl<TextBox>("textBoxMetadataImageBaseURI");
+            this.textBoxCollectionSize = this.FindControl<NumericUpDown>("textBoxCollectionSize");
+            this.textBoxCollectionInitialNumber = this.FindControl<NumericUpDown>("textBoxCollectionInitialNumber");
+            this.textBoxCollectionImagePrefix = this.FindControl<TextBox>("textBoxCollectionImagePrefix");
+
+            this.textBoxMetadataDescription.Text = "Made by NFT.net";
+            this.textBoxMetadataImageBaseURI.Text = "https://someurl.com/nft";
+            this.textBoxCollectionSize.Value = 10;
+            this.textBoxCollectionInitialNumber.Value = 1;
+            this.textBoxCollectionImagePrefix.Text = "nft #";
 
             var productName = Assembly.GetExecutingAssembly().GetName().Name;
             var productVersion = Assembly.GetExecutingAssembly().GetName().Version;
@@ -103,18 +120,18 @@ namespace NFT.net.View
 
         private void ButtonGenerateOnClick(object sender, RoutedEventArgs e)
         {
-            var layersFolder = @"";
-            var outputFolder = @"";
+            var layersFolder = this.textBoxLayersFolder.Text;
+            var outputFolder = this.textBoxOutputFolder.Text;
 
             var metadataType = 2;
-            var metadataDescription = "Made by NFT.net";
-            var metadataImageBaseUri = "https://someurl.com/nft";
+            var metadataDescription = this.textBoxMetadataDescription.Text;
+            var metadataImageBaseUri = this.textBoxMetadataImageBaseURI.Text;
 
-            var collectionSize = 10;
-            var collectionInitialNumber = 1;
-            var collectionImagePrefix = "nft #";
+            var collectionSize = this.textBoxCollectionSize.Value;
+            var collectionInitialNumber = this.textBoxCollectionInitialNumber.Value;
+            var collectionImagePrefix = this.textBoxCollectionImagePrefix.Text;
 
-            this.collectionService.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, collectionSize, collectionInitialNumber, collectionImagePrefix);
+            this.collectionService.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, (int)collectionSize, (int)collectionInitialNumber, collectionImagePrefix);
         }
     }
 }
