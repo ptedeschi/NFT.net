@@ -98,7 +98,7 @@ namespace Tedeschi.NFT.View
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -123,7 +123,7 @@ namespace Tedeschi.NFT.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -188,7 +188,7 @@ namespace Tedeschi.NFT.View
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex.Message), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(Resource.UNKNOWN_ERROR, ex), Resource.ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             };
 

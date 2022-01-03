@@ -41,7 +41,7 @@ namespace Tedeschi.NFT.Services.Collection
             var collectionNumber = collectionInitialNumber;
             var metadataList = new List<Metadata>();
 
-            var imagesFoder = $"{outputFolder}\\{Constants.ImagesFolderName}";
+            var imagesFoder = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.ImagesFolderName}";
 
             if (!Directory.Exists(imagesFoder))
             {
@@ -72,7 +72,7 @@ namespace Tedeschi.NFT.Services.Collection
 
                 metadataList.Add(metadata);
 
-                combinedImages.Save($"{imagesFoder}\\{filename}", ImageFormat.Png);
+                combinedImages.Save($"{imagesFoder}{Path.DirectorySeparatorChar}{filename}", ImageFormat.Png);
 
                 var args = new ImageEventArgs
                 {

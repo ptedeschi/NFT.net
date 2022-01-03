@@ -13,7 +13,7 @@ namespace Tedeschi.NFT.Services.Metadata
     {
         public void Generate(string outputFolder, List<Metadata> metadataList, int type)
         {
-            var metadataLocation = $"{outputFolder}\\{Constants.MetadataDefault.FolderName}";
+            var metadataLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName}";
             var serializerSettings = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
@@ -31,7 +31,7 @@ namespace Tedeschi.NFT.Services.Metadata
                     }
 
                     var jsonMerged = JsonConvert.SerializeObject(metadataList, Formatting.Indented, serializerSettings);
-                    File.WriteAllText($"{metadataLocation}\\{Constants.MetadataDefault.MergedFilename}{Constants.FileExtension.Json}", jsonMerged);
+                    File.WriteAllText($"{metadataLocation}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{Constants.FileExtension.Json}", jsonMerged);
                     break;
 
                 case Constants.MetadataType.Individual:
@@ -43,7 +43,7 @@ namespace Tedeschi.NFT.Services.Metadata
                     foreach (var metadata in metadataList)
                     {
                         var jsonIndividual = JsonConvert.SerializeObject(metadata, Formatting.Indented, serializerSettings);
-                        File.WriteAllText($"{metadataLocation}\\{metadata.Id}{Constants.FileExtension.Json}", jsonIndividual);
+                        File.WriteAllText($"{metadataLocation}{Path.DirectorySeparatorChar}{metadata.Id}{Constants.FileExtension.Json}", jsonIndividual);
                     }
 
                     break;
@@ -52,7 +52,7 @@ namespace Tedeschi.NFT.Services.Metadata
 
         public void Update(string outputFolder, string newImageBaseUri, int type)
         {
-            var metadataLocation = $"{outputFolder}\\{Constants.MetadataDefault.FolderName}";
+            var metadataLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName}";
 
             switch (type)
             {
@@ -61,7 +61,7 @@ namespace Tedeschi.NFT.Services.Metadata
 
                 case Constants.MetadataType.Merged:
                     {
-                        var filename = $"{metadataLocation}\\{Constants.MetadataDefault.MergedFilename}{Constants.FileExtension.Json}";
+                        var filename = $"{metadataLocation}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{Constants.FileExtension.Json}";
                         var list = JsonConvert.DeserializeObject<List<Metadata>>(File.ReadAllText(filename));
 
                         foreach (var item in list)

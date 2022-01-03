@@ -8,7 +8,6 @@ namespace Tedeschi.NFT.Services.Generator
     using System.Collections.Generic;
     using Tedeschi.NFT.Exception;
     using Tedeschi.NFT.Model;
-    using Tedeschi.NFT.Resources;
 
     internal class GeneratorService : IGeneratorService
     {
@@ -42,8 +41,6 @@ namespace Tedeschi.NFT.Services.Generator
                     }
 
                     dnaDuplicatedAttempts++;
-
-                    Console.WriteLine(Resource.DUPLICATED_DNA, imageDescriptor.Dna);
                 }
             }
 
