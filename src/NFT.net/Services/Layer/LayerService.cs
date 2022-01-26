@@ -112,8 +112,8 @@ namespace Tedeschi.NFT.Services.Layer
             }
             else
             {
-                // Otherwise use Weight as the number of files present at the layer folder so it will represent 100%
-                weight = files.Length;
+                // Otherwise use Weight as 100%
+                weight = 100;
                 filename = fileNameWithoutExtension;
             }
 

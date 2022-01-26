@@ -4,19 +4,19 @@
 namespace Tedeschi.NFT.Mechanism
 {
     using System;
-    using Weighted_Randomizer;
+    using Ether.WeightedSelector;
 
     public class WeightedRandomizer<T>
         where T : IComparable<T>
     {
-        private readonly DynamicWeightedRandomizer<T> randomizer = null;
+        private readonly WeightedSelector<T> randomizer = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WeightedRandomizer{T}"/> class.
         /// </summary>
         public WeightedRandomizer()
         {
-            this.randomizer = new DynamicWeightedRandomizer<T>();
+            this.randomizer = new WeightedSelector<T>();
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Tedeschi.NFT.Mechanism
         /// <param name="seed">The seed value to initialize the random number generator.</param>
         public WeightedRandomizer(int seed)
         {
-            this.randomizer = new DynamicWeightedRandomizer<T>(seed);
+            throw new NotImplementedException("Seed is not supported yet!");
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Tedeschi.NFT.Mechanism
         /// <returns>The choosen item.</returns>
         public T Select()
         {
-            return this.randomizer.NextWithReplacement();
+            return this.randomizer.Select();
         }
     }
 }

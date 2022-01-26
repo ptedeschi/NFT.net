@@ -7,24 +7,19 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<RootNamespace>Tedeschi.NFT</RootNamespace>
 		<AssemblyName>NFT.net</AssemblyName>
-		<Version>1.2.2</Version>
+		<Version>1.3.0</Version>
 		<Authors>Tedeschi</Authors>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Autofac" Version="6.2.0" />
+		<PackageReference Include="Autofac" Version="6.3.0" />
+		<PackageReference Include="Ether.WeightedSelector" Version="1.2.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<AdditionalFiles Include="stylecop.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="Weighted Randomizer Net Standard">
-			<HintPath>..\..\dependencies\Weighted Randomizer\Weighted Randomizer Net Standard.dll</HintPath>
-		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
