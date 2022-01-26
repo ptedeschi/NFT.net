@@ -17,17 +17,7 @@ namespace Tedeschi.NFT.View
 
         public void Process(List<Layer> layers)
         {
-            foreach (var layer in layers)
-            {
-                this.richTextBoxInfo.Text += $"\n{layer.Name}\n";
-                this.richTextBoxInfo.Text += "────────────────────────────\n";
-
-                foreach (var element in layer.Elements)
-                {
-                    var probability = element.Weight * 100 / layer.Randomizer.TotalWeight;
-                    this.richTextBoxInfo.Text += $"\t{element.Name}: {probability}%\n";
-                }
-            }
+            this.richTextBoxInfo.Text = "To be removed in future versions";
         }
     }
 }

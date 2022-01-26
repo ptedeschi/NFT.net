@@ -4,7 +4,6 @@
 
 namespace Tedeschi.NFT.Services.Generator
 {
-    using System;
     using System.Collections.Generic;
     using Tedeschi.NFT.Exception;
     using Tedeschi.NFT.Model;
@@ -55,7 +54,7 @@ namespace Tedeschi.NFT.Services.Generator
 
             foreach (var layer in layers)
             {
-                var index = layer.Randomizer.NextWithReplacement();
+                var index = layer.Randomizer.Select();
 
                 var attribute = new ImageAttribute
                 {
