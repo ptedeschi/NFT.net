@@ -9,6 +9,6 @@ namespace Tedeschi.NFT.Services.Generator
 
     public interface IGeneratorService
     {
-        List<ImageDescriptor> Create(List<Layer> layers, int collectionSize);
+        List<ImageDescriptor> Create(List<Layer> layers, int collectionSize, string layersFolder);
     }
 }

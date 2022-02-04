@@ -5,12 +5,16 @@
 namespace Tedeschi.NFT.Services.Generator
 {
     using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using Newtonsoft.Json;
     using Tedeschi.NFT.Exception;
     using Tedeschi.NFT.Model;
+    using static Tedeschi.NFT.Constants;
 
     internal class GeneratorService : IGeneratorService
     {
-        public List<ImageDescriptor> Create(List<Layer> layers, int collectionSize)
+        public List<ImageDescriptor> Create(List<Layer> layers, int collectionSize, string layersFolder)
         {
             var images = new List<ImageDescriptor>();
             var dic = new Dictionary<int, string>();
@@ -24,6 +28,11 @@ namespace Tedeschi.NFT.Services.Generator
 
                 if (!dic.ContainsValue(imageDescriptor.Dna))
                 {
+                    if (!this.IsCombinationAllowed(this.GetCombinationRules(layersFolder), imageDescriptor))
+                    {
+                        continue;
+                    }
+
                     dic.Add(uniqueImagesCount, imageDescriptor.Dna);
                     images.Add(imageDescriptor);
 
@@ -69,6 +78,63 @@ namespace Tedeschi.NFT.Services.Generator
             }
 
             return new ImageDescriptor { Dna = string.Join("-", dna), Files = files, Attributes = attributes };
+        }
+
+        private CombinationsNotAllowedRules GetCombinationRules(string layersFolder)
+        {
+            CombinationsNotAllowedRules combinationRules = null;
+
+            try
+            {
+                var rulesFile = $"{layersFolder}{Path.DirectorySeparatorChar}{CombinationRules.FileName}";
+
+                combinationRules = new CombinationsNotAllowedRules();
+                var temp = JsonConvert.DeserializeObject<List<Combination>>(File.ReadAllText(rulesFile));
+                combinationRules.Combinations = temp.ToArray();
+            }
+            catch
+            {
+            }
+
+            return combinationRules;
+        }
+
+        private bool IsCombinationAllowed(CombinationsNotAllowedRules rules, ImageDescriptor descriptor)
+        {
+            if (rules != null && rules.Combinations != null)
+            {
+                foreach (var combination in rules.Combinations)
+                {
+                    // Get the image attribute that contains the layer mentioned in the rules
+                    var layer_1 = descriptor.Attributes.Where(a => a.Layer.ToLower().Contains(combination.LayerName_1.ToLower())).FirstOrDefault();
+                    var layer_2 = descriptor.Attributes.Where(a => a.Layer.ToLower().Contains(combination.LayerName_2.ToLower())).FirstOrDefault();
+
+                    // Check if it's not avoiding the whole trait
+                    if (combination.ElementName_1.Equals(CombinationRules.WildcardSymbol))
+                    {
+                        if (layer_1 != null && !layer_1.Value.ToLower().Equals(CombinationRules.WildcardExceptionFilename) && layer_2.Value.ToLower().Equals(combination.ElementName_2.ToLower()))
+                        {
+                            return false;
+                        }
+                    }
+
+                    // Check if it's not avoiding the whole trait
+                    if (combination.ElementName_2.Equals(CombinationRules.WildcardSymbol))
+                    {
+                        if (layer_1.Value.ToLower().Equals(combination.ElementName_1.ToLower()) && layer_2 != null && !layer_2.Value.ToLower().Equals(CombinationRules.WildcardExceptionFilename))
+                        {
+                            return false;
+                        }
+                    }
+
+                    if (layer_1.Value.ToLower().Equals(combination.ElementName_1.ToLower()) && layer_2.Value.ToLower().Equals(combination.ElementName_2.ToLower()))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
