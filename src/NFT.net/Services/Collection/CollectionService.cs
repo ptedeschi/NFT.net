@@ -22,13 +22,15 @@ namespace Tedeschi.NFT.Services.Collection
         private readonly IGeneratorService generatorService;
         private readonly IImageService imageService;
         private readonly IMetadataService metadataService;
+        private readonly IRarityService rarityService;
 
-        public CollectionService(ILayerService layerService, IGeneratorService generatorService, IImageService imageService, IMetadataService metadataService)
+        public CollectionService(ILayerService layerService, IGeneratorService generatorService, IImageService imageService, IMetadataService metadataService, IRarityService rarityService)
         {
             this.layerService = layerService;
             this.generatorService = generatorService;
             this.imageService = imageService;
             this.metadataService = metadataService;
+            this.rarityService = rarityService;
         }
 
         public event EventHandler<ImageEventArgs> CollectionItemStatus;
@@ -88,6 +90,8 @@ namespace Tedeschi.NFT.Services.Collection
             }
 
             this.metadataService.Generate(outputFolder, metadataList, metadataType);
+
+            this.rarityService.Generate(outputFolder, metadataList, metadataType);
         }
 
         private void OnCollectionItemProcessed(ImageEventArgs eventArgs)
