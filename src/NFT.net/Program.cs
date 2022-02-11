@@ -50,6 +50,7 @@ namespace Tedeschi.NFT
             builder.RegisterType<ImageService>().As<IImageService>();
             builder.RegisterType<GeneratorService>().As<IGeneratorService>();
             builder.RegisterType<MetadataService>().As<IMetadataService>();
+            builder.RegisterType<RarityService>().As<IRarityService>();
 
             return builder.Build();
         }

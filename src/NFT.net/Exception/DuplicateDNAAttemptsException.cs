@@ -1,4 +1,4 @@
-﻿// <copyright file="DuplicateDnaAttemptsException.cs" company="Tedeschi">
+﻿// <copyright file="DuplicateDNAAttemptsException.cs" company="Tedeschi">
 // Copyright (c) Tedeschi. All rights reserved.
 // </copyright>
 

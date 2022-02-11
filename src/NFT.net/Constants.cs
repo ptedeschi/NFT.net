@@ -31,6 +31,12 @@ namespace Tedeschi.NFT
             public const string MergedFilename = "metadata";
         }
 
+        public static class RarityDefault
+        {
+            public const string FolderName = "rarities";
+            public const string MergedFilename = "rarities";
+        }
+
         public static class FileExtension
         {
             public const string Png = ".png";
