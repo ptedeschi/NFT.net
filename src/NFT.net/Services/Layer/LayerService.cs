@@ -9,9 +9,9 @@ namespace Tedeschi.NFT.Services.Layer
     using System.IO;
     using System.Linq;
     using Tedeschi.NFT.Exception;
+    using Tedeschi.NFT.Mechanism;
     using Tedeschi.NFT.Model;
     using Tedeschi.NFT.Util;
-    using Weighted_Randomizer;
 
     internal class LayerService : ILayerService
     {
@@ -31,7 +31,7 @@ namespace Tedeschi.NFT.Services.Layer
 
             for (var i = 0; i < folders.Length; i++)
             {
-                var randomizer = new DynamicWeightedRandomizer<int>();
+                var randomizer = new WeightedRandomizer<int>();
                 var folder = folders[i];
                 var folderName = Path.GetFileName(folder);
 
@@ -66,7 +66,7 @@ namespace Tedeschi.NFT.Services.Layer
             return layers;
         }
 
-        private List<Element> HandleElements(string[] files, DynamicWeightedRandomizer<int> randomizer)
+        private List<Element> HandleElements(string[] files, WeightedRandomizer<int> randomizer)
         {
             var elements = new List<Element>();
 
@@ -112,8 +112,8 @@ namespace Tedeschi.NFT.Services.Layer
             }
             else
             {
-                // Otherwise use Weight as the number of files present at the layer folder so it will represent 100%
-                weight = files.Length;
+                // Otherwise use Weight as 100%
+                weight = 100;
                 filename = fileNameWithoutExtension;
             }
 

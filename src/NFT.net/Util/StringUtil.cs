@@ -74,9 +74,16 @@ namespace Tedeschi.NFT.Util
         public static int GetWeight(string filename, char delimiter)
         {
             var index = filename.LastIndexOf(delimiter);
-            var weight = filename.Substring(index + 1);
+            var weightStr = filename.Substring(index + 1);
 
-            return int.Parse(weight);
+            var weight = int.Parse(weightStr);
+
+            if (weight <= 0 || weight > 100)
+            {
+                throw new System.Exception("Invalid weight");
+            }
+
+            return weight;
         }
     }
 }

@@ -42,5 +42,12 @@ namespace Tedeschi.NFT
             public const string Png = ".png";
             public const string Json = ".json";
         }
+
+        public static class CombinationRules
+        {
+            public const string FileName = "rules.json";
+            public const string WildcardSymbol = "*";
+            public const string WildcardExceptionFilename = "none";
+        }
     }
 }

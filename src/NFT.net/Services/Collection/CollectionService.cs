@@ -39,7 +39,7 @@ namespace Tedeschi.NFT.Services.Collection
         {
             var layers = this.layerService.Load(layersFolder);
 
-            var imageDescriptors = this.generatorService.Create(layers, collectionSize);
+            var imageDescriptors = this.generatorService.Create(layers, collectionSize, layersFolder);
             var collectionNumber = collectionInitialNumber;
             var metadataList = new List<Metadata>();
 
