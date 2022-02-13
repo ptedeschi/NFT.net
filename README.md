@@ -50,26 +50,28 @@ For example:
 ## Layer elements (*trait values*)
 All images used to create the NFT MUST have the same dimensions (width and height). Subfolders are not supported.
 
+### Weighting
 If you want to add weighting ability to your images, you can do so by adding weight as a suffix to the image filename.
 
 Imagine the scenario where you have a hat layer and support 5 different hat colors.
 This is how you can weigh them:
 
- - hat_red+1.png
--  hat_orange+3.png
--  hat_yellow+3.png
--  hat_green+4.png
--  hat_blue+4.png
+- hat_red+10.png
+- hat_orange+20.png
+- hat_yellow+20.png
+- hat_green+40.png
+- hat_blue.png
 
-By using the plus sign (+) and a number, you are telling NFT<area>.net the chances to choose images.
+By using the plus sign (+) and a number (between 1-100), you are telling NFT<area>.net the chances to choose images.
 
-In this case, red has 6% (1/15).  
-Orange and yellow have 20% (3/15).  
-And green and blue have 27% (4/15).  
+In this case, red has 10%.
+Orange and yellow have 20%.
+Green has 40%.
+And blue, since no suffix was added, will be treated as 100%.
 
 > Currently, only integers numbers are supported for setting weights!
 
-> If no weight is defined in the suffix, the total number of files present in the layers folder will be used as weight so everyone will have the same chances
+> If no weight is defined in the suffix, 100% is assumed by default!
 
 A new tool was recently added so that you can get a better overview of the probabilities of your features.
 You can access it by clicking Tools > Check Trait Weights
