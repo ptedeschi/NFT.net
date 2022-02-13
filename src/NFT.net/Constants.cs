@@ -49,5 +49,10 @@ namespace Tedeschi.NFT
             public const string WildcardSymbol = "*";
             public const string WildcardExceptionFilename = "none";
         }
+
+        public static class PresetDnaConfig
+        {
+            public const string FileName = "preset.json";
+        }
     }
 }

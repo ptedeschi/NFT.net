@@ -4,6 +4,7 @@
 
 namespace Tedeschi.NFT.Services.Generator
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -19,7 +20,18 @@ namespace Tedeschi.NFT.Services.Generator
             var images = new List<ImageDescriptor>();
             var dic = new Dictionary<int, string>();
 
-            var uniqueImagesCount = 0;
+            // Load predefined images (if available)
+            var presetDna = this.GetPresetDna(layersFolder);
+
+            if (presetDna != null && presetDna.Preset != null && presetDna.Preset.Length > 0)
+            {
+                foreach (var dna in presetDna.Preset)
+                {
+                    images.Add(this.DnaToImageDescriptor(layers, dna));
+                }
+            }
+
+            var uniqueImagesCount = images.Count;
             var dnaDuplicatedAttempts = 0;
 
             while (uniqueImagesCount != collectionSize)
@@ -80,6 +92,32 @@ namespace Tedeschi.NFT.Services.Generator
             return new ImageDescriptor { Dna = string.Join("-", dna), Files = files, Attributes = attributes };
         }
 
+        private ImageDescriptor DnaToImageDescriptor(List<Layer> layers, string dna)
+        {
+            var numbers = dna.Split('-').Select(int.Parse).ToList();
+
+            var attributes = new List<ImageAttribute>();
+            var files = new List<string>();
+            var layer = 0;
+
+            foreach (var index in numbers)
+            {
+                var attribute = new ImageAttribute
+                {
+                    Layer = layers[layer].Name,
+                    Value = layers[layer].Elements[index].Name,
+                    File = layers[layer].Elements[index].Path,
+                };
+
+                attributes.Add(attribute);
+                files.Add(attribute.File);
+
+                layer++;
+            }
+
+            return new ImageDescriptor { Dna = dna, Files = files, Attributes = attributes };
+        }
+
         private CombinationsNotAllowedRules GetCombinationRules(string layersFolder)
         {
             CombinationsNotAllowedRules combinationRules = null;
@@ -97,6 +135,22 @@ namespace Tedeschi.NFT.Services.Generator
             }
 
             return combinationRules;
+        }
+
+        private PresetDna GetPresetDna(string layersFolder)
+        {
+            PresetDna presetDna = null;
+
+            try
+            {
+                var file = $"{layersFolder}{Path.DirectorySeparatorChar}{PresetDnaConfig.FileName}";
+                presetDna = JsonConvert.DeserializeObject<PresetDna>(File.ReadAllText(file));
+            }
+            catch
+            {
+            }
+
+            return presetDna;
         }
 
         private bool IsCombinationAllowed(CombinationsNotAllowedRules rules, ImageDescriptor descriptor)
