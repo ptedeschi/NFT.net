@@ -22,7 +22,7 @@ namespace Tedeschi.NFT.Services.Generator
             // Load predefined images (if available)
             var presetDna = this.GetPresetDna(layersFolder);
 
-            if (presetDna != null && presetDna.Preset != null && presetDna.Preset.Length > 0)
+            if (presetDna != null && presetDna.Preset != null && presetDna.Preset.Length > 0 && presetDna.Preset.Length < collectionSize)
             {
                 foreach (var dna in presetDna.Preset)
                 {

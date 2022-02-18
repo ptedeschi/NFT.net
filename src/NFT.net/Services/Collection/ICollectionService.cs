@@ -11,6 +11,6 @@ namespace Tedeschi.NFT.Services.Collection
     {
         event EventHandler<ImageEventArgs> CollectionItemStatus;
 
-        void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, int collectionSize, int collectionInitialNumber, string collectionImagePrefix);
+        void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, string metadataExternalUrl, bool metadataUseFileExtension, int collectionSize, int collectionInitialNumber, string collectionImagePrefix);
     }
 }

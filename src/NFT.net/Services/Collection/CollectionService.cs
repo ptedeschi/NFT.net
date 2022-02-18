@@ -35,7 +35,7 @@ namespace Tedeschi.NFT.Services.Collection
 
         public event EventHandler<ImageEventArgs> CollectionItemStatus;
 
-        public void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, int collectionSize, int collectionInitialNumber, string collectionImagePrefix)
+        public void Create(string layersFolder, string outputFolder, int metadataType, string metadataDescription, string metadataImageBaseUri, string metadataExternalUrl, bool metadataUseFileExtension, int collectionSize, int collectionInitialNumber, string collectionImagePrefix)
         {
             var layers = this.layerService.Load(layersFolder);
 
@@ -69,6 +69,7 @@ namespace Tedeschi.NFT.Services.Collection
                     Filename = Uri.EscapeDataString(filename),
                     Description = metadataDescription,
                     Image = $"{metadataImageBaseUri}/{Uri.EscapeDataString(filename)}",
+                    ExternalUrl = metadataExternalUrl,
                     Attributes = item.Attributes.Select(i => new Model.Attribute { Layer = i.Layer, Value = i.Value }).ToList(),
                 };
 
@@ -89,7 +90,7 @@ namespace Tedeschi.NFT.Services.Collection
                 collectionNumber++;
             }
 
-            this.metadataService.Generate(outputFolder, metadataList, metadataType);
+            this.metadataService.Generate(outputFolder, metadataList, metadataType, metadataUseFileExtension);
 
             this.rarityService.Generate(outputFolder, metadataList, metadataType);
         }

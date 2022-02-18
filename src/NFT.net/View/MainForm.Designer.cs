@@ -49,6 +49,9 @@ namespace Tedeschi.NFT.View
             this.buttonGenerate = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxMetadataUseFileExtension = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxMetadataExternalUrl = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxMetadataImageBaseURI = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,8 +61,8 @@ namespace Tedeschi.NFT.View
             this.toolStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateMetadataImageBaseURIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkTraitWeightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateMetadataImageBaseURIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
@@ -126,7 +129,7 @@ namespace Tedeschi.NFT.View
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.textBoxCollectionSize);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 317);
+            this.groupBox2.Location = new System.Drawing.Point(12, 351);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(465, 123);
             this.groupBox2.TabIndex = 9;
@@ -199,7 +202,7 @@ namespace Tedeschi.NFT.View
             // 
             // buttonGenerate
             // 
-            this.buttonGenerate.Location = new System.Drawing.Point(12, 446);
+            this.buttonGenerate.Location = new System.Drawing.Point(12, 480);
             this.buttonGenerate.Name = "buttonGenerate";
             this.buttonGenerate.Size = new System.Drawing.Size(465, 28);
             this.buttonGenerate.TabIndex = 13;
@@ -217,6 +220,9 @@ namespace Tedeschi.NFT.View
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkBoxMetadataUseFileExtension);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.textBoxMetadataExternalUrl);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.textBoxMetadataImageBaseURI);
             this.groupBox3.Controls.Add(this.label5);
@@ -225,10 +231,36 @@ namespace Tedeschi.NFT.View
             this.groupBox3.Controls.Add(this.comboBoxMetadataType);
             this.groupBox3.Location = new System.Drawing.Point(12, 190);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(465, 113);
+            this.groupBox3.Size = new System.Drawing.Size(465, 144);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Metadata";
+            // 
+            // checkBoxMetadataUseExtension
+            // 
+            this.checkBoxMetadataUseFileExtension.AutoSize = true;
+            this.checkBoxMetadataUseFileExtension.Location = new System.Drawing.Point(384, 21);
+            this.checkBoxMetadataUseFileExtension.Name = "checkBoxMetadataUseExtension";
+            this.checkBoxMetadataUseFileExtension.Size = new System.Drawing.Size(73, 19);
+            this.checkBoxMetadataUseFileExtension.TabIndex = 20;
+            this.checkBoxMetadataUseFileExtension.Text = "Use .json";
+            this.checkBoxMetadataUseFileExtension.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(24, 112);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 15);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "External URL";
+            // 
+            // textBoxMetadataExternalUrl
+            // 
+            this.textBoxMetadataExternalUrl.Location = new System.Drawing.Point(142, 108);
+            this.textBoxMetadataExternalUrl.Name = "textBoxMetadataExternalUrl";
+            this.textBoxMetadataExternalUrl.Size = new System.Drawing.Size(317, 23);
+            this.textBoxMetadataExternalUrl.TabIndex = 17;
             // 
             // label6
             // 
@@ -267,7 +299,7 @@ namespace Tedeschi.NFT.View
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar,
             this.toolStripStatus});
-            this.statusStrip.Location = new System.Drawing.Point(0, 497);
+            this.statusStrip.Location = new System.Drawing.Point(0, 515);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(490, 22);
             this.statusStrip.TabIndex = 10;
@@ -302,19 +334,19 @@ namespace Tedeschi.NFT.View
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
-            // updateMetadataImageBaseURIToolStripMenuItem
-            // 
-            this.updateMetadataImageBaseURIToolStripMenuItem.Name = "updateMetadataImageBaseURIToolStripMenuItem";
-            this.updateMetadataImageBaseURIToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.updateMetadataImageBaseURIToolStripMenuItem.Text = "Update Metadata Image Base URI";
-            this.updateMetadataImageBaseURIToolStripMenuItem.Click += new System.EventHandler(this.UpdateMetadataImageBaseURIToolStripMenuItemOnClick);
-            // 
             // checkTraitWeightsToolStripMenuItem
             // 
             this.checkTraitWeightsToolStripMenuItem.Name = "checkTraitWeightsToolStripMenuItem";
             this.checkTraitWeightsToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.checkTraitWeightsToolStripMenuItem.Text = "Check Trait Weights";
             this.checkTraitWeightsToolStripMenuItem.Click += new System.EventHandler(this.CheckTraitWeightsToolStripMenuItemOnClick);
+            // 
+            // updateMetadataImageBaseURIToolStripMenuItem
+            // 
+            this.updateMetadataImageBaseURIToolStripMenuItem.Name = "updateMetadataImageBaseURIToolStripMenuItem";
+            this.updateMetadataImageBaseURIToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.updateMetadataImageBaseURIToolStripMenuItem.Text = "Update Metadata Image Base URI";
+            this.updateMetadataImageBaseURIToolStripMenuItem.Click += new System.EventHandler(this.UpdateMetadataImageBaseURIToolStripMenuItemOnClick);
             // 
             // helpToolStripMenuItem
             // 
@@ -327,7 +359,7 @@ namespace Tedeschi.NFT.View
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutMenuItemOnClick);
             // 
@@ -335,7 +367,7 @@ namespace Tedeschi.NFT.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 519);
+            this.ClientSize = new System.Drawing.Size(490, 537);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.groupBox3);
@@ -349,8 +381,8 @@ namespace Tedeschi.NFT.View
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(506, 558);
-            this.MinimumSize = new System.Drawing.Size(506, 558);
+            this.MaximumSize = new System.Drawing.Size(506, 576);
+            this.MinimumSize = new System.Drawing.Size(506, 576);
             this.Name = "MainForm";
             this.Text = "NFT.net";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_OnFormClosed);
@@ -401,6 +433,9 @@ namespace Tedeschi.NFT.View
         private System.Windows.Forms.ToolStripMenuItem updateMetadataImageBaseURIToolStripMenuItem;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.ToolStripMenuItem checkTraitWeightsToolStripMenuItem;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxMetadataExternalUrl;
+        private System.Windows.Forms.CheckBox checkBoxMetadataUseFileExtension;
     }
 }
 

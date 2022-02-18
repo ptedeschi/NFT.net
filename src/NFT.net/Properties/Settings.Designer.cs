@@ -118,5 +118,29 @@ namespace Tedeschi.NFT.Properties {
                 this["CollectionImageNamePrefix"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MetadataExternalUrl {
+            get {
+                return ((string)(this["MetadataExternalUrl"]));
+            }
+            set {
+                this["MetadataExternalUrl"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MetadataUseFileExtension {
+            get {
+                return ((bool)(this["MetadataUseFileExtension"]));
+            }
+            set {
+                this["MetadataUseFileExtension"] = value;
+            }
+        }
     }
 }

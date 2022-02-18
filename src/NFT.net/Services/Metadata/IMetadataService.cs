@@ -9,8 +9,8 @@ namespace Tedeschi.NFT.Services.Metadata
 
     public interface IMetadataService
     {
-        void Generate(string outputFolder, List<Metadata> metadataList, int type);
+        void Generate(string outputFolder, List<Metadata> metadataList, int type, bool useFileExtension);
 
-        void Update(string outputFolder, string newImageBaseUri, int type);
+        void Update(string outputFolder, string newImageBaseUri, int type, bool useFileExtension);
     }
 }

@@ -11,9 +11,11 @@ namespace Tedeschi.NFT.Services.Metadata
 
     internal class MetadataService : IMetadataService
     {
-        public void Generate(string outputFolder, List<Metadata> metadataList, int type)
+        public void Generate(string outputFolder, List<Metadata> metadataList, int type, bool useFileExtension)
         {
             var metadataLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName}";
+            var extension = useFileExtension == true ? Constants.FileExtension.Json : string.Empty;
+
             var serializerSettings = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
@@ -31,7 +33,7 @@ namespace Tedeschi.NFT.Services.Metadata
                     }
 
                     var jsonMerged = JsonConvert.SerializeObject(metadataList, Formatting.Indented, serializerSettings);
-                    File.WriteAllText($"{metadataLocation}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{Constants.FileExtension.Json}", jsonMerged);
+                    File.WriteAllText($"{metadataLocation}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{extension}", jsonMerged);
                     break;
 
                 case Constants.MetadataType.Individual:
@@ -43,16 +45,17 @@ namespace Tedeschi.NFT.Services.Metadata
                     foreach (var metadata in metadataList)
                     {
                         var jsonIndividual = JsonConvert.SerializeObject(metadata, Formatting.Indented, serializerSettings);
-                        File.WriteAllText($"{metadataLocation}{Path.DirectorySeparatorChar}{metadata.Id}{Constants.FileExtension.Json}", jsonIndividual);
+                        File.WriteAllText($"{metadataLocation}{Path.DirectorySeparatorChar}{metadata.Id}{extension}", jsonIndividual);
                     }
 
                     break;
             }
         }
 
-        public void Update(string outputFolder, string newImageBaseUri, int type)
+        public void Update(string outputFolder, string newImageBaseUri, int type, bool useFileExtension)
         {
             var metadataLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName}";
+            var extension = useFileExtension == true ? Constants.FileExtension.Json : string.Empty;
 
             switch (type)
             {
@@ -61,7 +64,7 @@ namespace Tedeschi.NFT.Services.Metadata
 
                 case Constants.MetadataType.Merged:
                     {
-                        var filename = $"{metadataLocation}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{Constants.FileExtension.Json}";
+                        var filename = $"{metadataLocation}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{extension}";
                         var list = JsonConvert.DeserializeObject<List<Metadata>>(File.ReadAllText(filename));
 
                         foreach (var item in list)
@@ -69,7 +72,7 @@ namespace Tedeschi.NFT.Services.Metadata
                             item.Image = $"{newImageBaseUri}/{item.Filename}";
                         }
 
-                        this.Generate(outputFolder, list, type);
+                        this.Generate(outputFolder, list, type, useFileExtension);
                     }
 
                     break;
@@ -78,7 +81,7 @@ namespace Tedeschi.NFT.Services.Metadata
                     {
                         var list = new List<Metadata>();
 
-                        foreach (string filename in Directory.GetFiles(metadataLocation, $"*{Constants.FileExtension.Json}"))
+                        foreach (string filename in Directory.GetFiles(metadataLocation, $"*{extension}"))
                         {
                             var metadata = JsonConvert.DeserializeObject<Metadata>(File.ReadAllText(filename));
                             metadata.Image = $"{newImageBaseUri}/{metadata.Filename}";
@@ -86,7 +89,7 @@ namespace Tedeschi.NFT.Services.Metadata
                             list.Add(metadata);
                         }
 
-                        this.Generate(outputFolder, list, type);
+                        this.Generate(outputFolder, list, type, useFileExtension);
                     }
 
                     break;

@@ -26,5 +26,11 @@
     <Setting Name="CollectionImageNamePrefix" Type="System.String" Scope="User">
       <Value Profile="(Default)">nft #</Value>
     </Setting>
+    <Setting Name="MetadataExternalUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MetadataUseFileExtension" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

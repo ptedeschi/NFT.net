@@ -43,6 +43,8 @@ namespace Tedeschi.NFT.View
             this.comboBoxMetadataType.SelectedIndex = Properties.Settings.Default.MetadataType;
             this.textBoxMetadataDescription.Text = Properties.Settings.Default.MetadataDescription;
             this.textBoxMetadataImageBaseURI.Text = Properties.Settings.Default.MetadataImageBaseURI;
+            this.textBoxMetadataExternalUrl.Text = Properties.Settings.Default.MetadataExternalUrl;
+            this.checkBoxMetadataUseFileExtension.Checked = Properties.Settings.Default.MetadataUseFileExtension;
 
             // Collection
             this.textBoxCollectionSize.Text = Properties.Settings.Default.CollectionSize;
@@ -60,6 +62,8 @@ namespace Tedeschi.NFT.View
             Properties.Settings.Default.MetadataType = this.comboBoxMetadataType.SelectedIndex;
             Properties.Settings.Default.MetadataDescription = this.textBoxMetadataDescription.Text;
             Properties.Settings.Default.MetadataImageBaseURI = this.textBoxMetadataImageBaseURI.Text;
+            Properties.Settings.Default.MetadataExternalUrl = this.textBoxMetadataExternalUrl.Text;
+            Properties.Settings.Default.MetadataUseFileExtension = this.checkBoxMetadataUseFileExtension.Checked;
 
             // Collection
             Properties.Settings.Default.CollectionSize = this.textBoxCollectionSize.Text;
@@ -84,11 +88,12 @@ namespace Tedeschi.NFT.View
                 var outputFolder = this.textBoxOutputFolder.Text;
                 var metadataImageBaseUri = this.textBoxMetadataImageBaseURI.Text;
                 var metadataType = this.comboBoxMetadataType.SelectedIndex;
+                var metadataUseFileExtension = this.checkBoxMetadataUseFileExtension.Checked;
 
                 try
                 {
                     this.ValidateForUpdateMetadata(outputFolder, metadataImageBaseUri);
-                    this.metadataService.Update(outputFolder, metadataImageBaseUri, metadataType);
+                    this.metadataService.Update(outputFolder, metadataImageBaseUri, metadataType, metadataUseFileExtension);
 
                     MessageBox.Show(Resource.METADATA_UPDATED_SUCCESSFULLY);
                 }
@@ -154,6 +159,8 @@ namespace Tedeschi.NFT.View
             var metadataType = this.comboBoxMetadataType.SelectedIndex;
             var metadataDescription = this.textBoxMetadataDescription.Text;
             var metadataImageBaseUri = this.textBoxMetadataImageBaseURI.Text;
+            var metadataExternalUrl = this.textBoxMetadataExternalUrl.Text;
+            var metadataUseFileExtension = this.checkBoxMetadataUseFileExtension.Checked;
 
             var collectionSize = this.textBoxCollectionSize.Text;
             var collectionInitialNumber = this.textBoxCollectionInitialNumber.Text;
@@ -166,7 +173,7 @@ namespace Tedeschi.NFT.View
                 {
                     this.ValidateForGeneration(layersFolder, outputFolder, metadataImageBaseUri, collectionSize, collectionInitialNumber);
                     this.collectionService.CollectionItemStatus += new EventHandler<ImageEventArgs>(this.OnCollectionItemProcessed);
-                    this.collectionService.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionImagePrefix);
+                    this.collectionService.Create(layersFolder, outputFolder, metadataType, metadataDescription, metadataImageBaseUri, metadataExternalUrl, metadataUseFileExtension, int.Parse(collectionSize), int.Parse(collectionInitialNumber), collectionImagePrefix);
 
                     MessageBox.Show(Resource.COLLECTION_CREATED_SUCCESSFULLY);
                 }
