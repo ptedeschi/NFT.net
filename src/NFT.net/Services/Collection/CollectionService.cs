@@ -43,11 +43,30 @@ namespace Tedeschi.NFT.Services.Collection
             var collectionNumber = collectionInitialNumber;
             var metadataList = new List<Metadata>();
 
+            // Handle Images folder
             var imagesFoder = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.ImagesFolderName}";
 
-            if (!Directory.Exists(imagesFoder))
+            if (Directory.Exists(imagesFoder))
             {
-                Directory.CreateDirectory(imagesFoder);
+                Directory.Delete(imagesFoder, true);
+            }
+
+            Directory.CreateDirectory(imagesFoder);
+
+            // Handle Metadata folder
+            var metadataLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName}";
+
+            if (Directory.Exists(metadataLocation))
+            {
+                Directory.Delete(metadataLocation, true);
+            }
+
+            // Handle Rarity folder
+            var rarityLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.RarityDefault.FolderName}";
+
+            if (Directory.Exists(rarityLocation))
+            {
+                Directory.Delete(rarityLocation, true);
             }
 
             foreach (var item in imageDescriptors)
