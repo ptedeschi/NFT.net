@@ -1,4 +1,4 @@
-﻿// <copyright file="MetadataService.cs" company="Tedeschi">
+// <copyright file="MetadataService.cs" company="Tedeschi">
 // Copyright (c) Tedeschi. All rights reserved.
 // </copyright>
 
@@ -14,6 +14,8 @@ namespace Tedeschi.NFT.Services.Metadata
         public void Generate(string outputFolder, List<Metadata> metadataList, int type, bool useFileExtension)
         {
             var metadataLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName}";
+            var metadataLocationIndividual = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName} {Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName2}";
+            var metadataLocationMerged = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName} {Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName3}";
             var extension = useFileExtension == true ? Constants.FileExtension.Json : string.Empty;
 
             var serializerSettings = new JsonSerializerSettings
@@ -49,12 +51,35 @@ namespace Tedeschi.NFT.Services.Metadata
                     }
 
                     break;
+
+                case Constants.MetadataType.Both:
+                    if (!Directory.Exists(metadataLocationIndividual))
+                    {
+                        Directory.CreateDirectory(metadataLocationIndividual);
+                    }
+
+                    foreach (var metadata in metadataList)
+                    {
+                        var jsonBIndividual = JsonConvert.SerializeObject(metadata, Formatting.Indented, serializerSettings);
+                        File.WriteAllText($"{metadataLocationIndividual}{Path.DirectorySeparatorChar}{metadata.Id}{extension}", jsonBIndividual);
+                    }
+
+                    if (!Directory.Exists(metadataLocationMerged))
+                    {
+                        Directory.CreateDirectory(metadataLocationMerged);
+                    }
+
+                    var jsonBMerged = JsonConvert.SerializeObject(metadataList, Formatting.Indented, serializerSettings);
+                    File.WriteAllText($"{metadataLocationMerged}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{extension}", jsonBMerged);
+                    break;
             }
         }
 
         public void Update(string outputFolder, string newImageBaseUri, int type, bool useFileExtension)
         {
             var metadataLocation = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName}";
+            var metadataLocationIndividual = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName} {Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName2}";
+            var metadataLocationMerged = $"{outputFolder}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName} {Path.DirectorySeparatorChar}{Constants.MetadataDefault.FolderName3}";
             var extension = useFileExtension == true ? Constants.FileExtension.Json : string.Empty;
 
             switch (type)
@@ -93,7 +118,38 @@ namespace Tedeschi.NFT.Services.Metadata
                     }
 
                     break;
+
+                case Constants.MetadataType.Both:
+                    {
+                        var list = new List<Metadata>();
+
+                        foreach (string filename in Directory.GetFiles(metadataLocationIndividual, $"*{extension}"))
+                        {
+                            var metadata = JsonConvert.DeserializeObject<Metadata>(File.ReadAllText(filename));
+                            metadata.Image = $"{newImageBaseUri}/{metadata.Filename}";
+
+                            list.Add(metadata);
+                        }
+
+                        this.Generate(outputFolder, list, type, useFileExtension);
+                    }
+
+                    break;
+                    {
+                        var filename = $"{metadataLocationMerged}{Path.DirectorySeparatorChar}{Constants.MetadataDefault.MergedFilename}{extension}";
+                        var list = JsonConvert.DeserializeObject<List<Metadata>>(File.ReadAllText(filename));
+
+                        foreach (var item in list)
+                        {
+                            item.Image = $"{newImageBaseUri}/{item.Filename}";
+                        }
+
+                        this.Generate(outputFolder, list, type, useFileExtension);
+                    }
+
+                    break;
             }
         }
     }
 }
+
