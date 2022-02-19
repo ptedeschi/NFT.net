@@ -10,6 +10,7 @@ namespace Tedeschi.NFT
         public const char WeightDelimiter = '+';
         public const string ImagesFolderName = "images";
         public const int MaxDuplicateDnaRetries = 100;
+        public static readonly string[] SupportedImageFormats = new[] { "*.jpg", "*.jpeg", "*.png" };
 
         public static class About
         {

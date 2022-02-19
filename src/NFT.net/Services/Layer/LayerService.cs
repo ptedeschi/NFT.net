@@ -41,7 +41,7 @@ namespace Tedeschi.NFT.Services.Layer
                     throw new InvalidLayerNamingException(folder);
                 }
 
-                var files = Directory.GetFiles(folder);
+                var files = DirectoryUtil.GetFiles(folder, Constants.SupportedImageFormats, SearchOption.AllDirectories);
 
                 var elements = this.HandleElements(files, randomizer);
 
