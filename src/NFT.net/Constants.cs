@@ -1,4 +1,4 @@
-﻿// <copyright file="Constants.cs" company="Tedeschi">
+// <copyright file="Constants.cs" company="Tedeschi">
 // Copyright (c) Tedeschi. All rights reserved.
 // </copyright>
 
@@ -24,11 +24,14 @@ namespace Tedeschi.NFT
             public const int None = 0;
             public const int Merged = 1;
             public const int Individual = 2;
+            public const int Both = 3;
         }
 
         public static class MetadataDefault
         {
             public const string FolderName = "metadata";
+            public const string FolderName2 = "Individual";
+            public const string FolderName3 = "Merged";
             public const string MergedFilename = "metadata";
         }
 
