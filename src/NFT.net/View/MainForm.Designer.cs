@@ -1,4 +1,4 @@
-﻿
+
 namespace Tedeschi.NFT.View
 {
     partial class MainForm
@@ -194,7 +194,8 @@ namespace Tedeschi.NFT.View
             this.comboBoxMetadataType.Items.AddRange(new object[] {
             "None",
             "Merged",
-            "Individual"});
+            "Individual",
+            "Both"});
             this.comboBoxMetadataType.Location = new System.Drawing.Point(142, 20);
             this.comboBoxMetadataType.Name = "comboBoxMetadataType";
             this.comboBoxMetadataType.Size = new System.Drawing.Size(121, 23);
@@ -438,4 +439,3 @@ namespace Tedeschi.NFT.View
         private System.Windows.Forms.CheckBox checkBoxMetadataUseFileExtension;
     }
 }
-
