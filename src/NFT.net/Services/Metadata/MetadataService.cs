@@ -152,4 +152,3 @@ namespace Tedeschi.NFT.Services.Metadata
         }
     }
 }
-
